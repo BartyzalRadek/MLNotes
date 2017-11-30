@@ -36,8 +36,8 @@ It should look like this:
  ```
  
  ### Ubuntu
- 1. source <ENV_NAME>/bin/activate
- 2. pip3 install ipykernel
+ 1. `source <ENV_NAME>/bin/activate`
+ 2. `pip3 install ipykernel`
  3. python3 -m ipykernel install --user --name <ENV_NAME> --display-name "<DISPLAYED NAME IN JUPYTER KERNEL SELECTION>"
     
     e.g.: `python3 -m ipykernel install --user --name tensorflow --display-name "TF_1.3_Python3"`
