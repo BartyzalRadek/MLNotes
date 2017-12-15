@@ -5,6 +5,10 @@
 # Improved script inspired by: https://gist.github.com/mjdietzx/0ff77af5ae60622ce6ed8c4d9b419f45
 
 # FIRSTLY check for installed CUDA or NVIDIA drivers and remove them!
+nvcc -V # check version of the CUDA Toolkit
+nvidia-smi # check that nvidia driver is working
+lsmod | grep nvidia # get loaded drivers
+
 sudo apt-get autoremove --purge cuda-8-0 # try just `cuda`
 rm -rf /usr/local/cuda-8.0/ # delete the folder if it still exists, change the version number of course
 apt remove --purge nvidia* # remove drivers
@@ -31,7 +35,7 @@ sudo cp -P cuda/include/cudnn.h /usr/local/cuda-8.0/include
 sudo cp -P cuda/lib64/libcudnn* /usr/local/cuda-8.0/lib64/
 sudo chmod a+r /usr/local/cuda-8.0/lib64/libcudnn*
 
-# set environment variables = add to the end of ~/.bashrc
+# set environment variables = add to the end of ~/.bashrc for permanent effect
 export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
@@ -39,7 +43,16 @@ export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY
 nvcc -V # check version of the CUDA Toolkit
 nvidia-smi # check that driver is working
 
-# 
+# Test CUDA
 cuda-install-samples-8.0.sh .
 cd NVIDIA_CUDA-8.0_Samples/; make;
 cd bin/x86_64/linux/release; ./deviceQuery;
+
+#------------- Troubleshooting -------------------
+nvidia-smi returns: NVML: Driver/library version mismatch
+# Solution = reboot or:
+# https://stackoverflow.com/questions/43022843/nvidia-nvml-driver-library-version-mismatch
+
+# Missing locale Warnings when connecting remotely
+locale # now set the (unset) members
+sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
