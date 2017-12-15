@@ -4,6 +4,11 @@
 
 # Improved script inspired by: https://gist.github.com/mjdietzx/0ff77af5ae60622ce6ed8c4d9b419f45
 
+# FIRSTLY check for installed CUDA or NVIDIA drivers and remove them!
+sudo apt-get autoremove --purge cuda-8-0 # try just `cuda`
+rm -rf /usr/local/cuda-8.0/ # delete the folder if it still exists, change the version number of course
+apt remove --purge nvidia* # remove drivers
+
 # install CUDA Toolkit v8.0
 # instructions from https://developer.nvidia.com/cuda-downloads (linux -> x86_64 -> Ubuntu -> 16.04 -> deb (network))
 CUDA_REPO_PKG="cuda-repo-ubuntu1604_8.0.61-1_amd64.deb"
@@ -26,13 +31,15 @@ sudo cp -P cuda/include/cudnn.h /usr/local/cuda-8.0/include
 sudo cp -P cuda/lib64/libcudnn* /usr/local/cuda-8.0/lib64/
 sudo chmod a+r /usr/local/cuda-8.0/lib64/libcudnn*
 
-# set environment variables
+# set environment variables = add to the end of ~/.bashrc
 export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 # Verify installation
 nvcc -V # check version of the CUDA Toolkit
+nvidia-smi # check that driver is working
 
+# 
 cuda-install-samples-8.0.sh .
 cd NVIDIA_CUDA-8.0_Samples/; make;
 cd bin/x86_64/linux/release; ./deviceQuery;
