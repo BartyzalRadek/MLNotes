@@ -54,7 +54,7 @@ Test CUDA:
 
 ```
 cuda-install-samples-8.0.sh .
-cd NVIDIA_CUDA-8.0_Samples/; make;
+cd NVIDIA_CUDA-8.0_Samples/; make; # if it crashes at folder 3, fix is in troubleshooting
 cd bin/x86_64/linux/release; ./deviceQuery;
 ```
 
@@ -68,3 +68,11 @@ cd bin/x86_64/linux/release; ./deviceQuery;
  - `locale` now set the (unset) members:
  - `sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8`
  - https://askubuntu.com/questions/162391/how-do-i-fix-my-locale-issue
+ 
+*NVIDIA_CUDA-8.0_Samples `make`: Cannot find library -lnvcuvid*
+ - This is actully bug in the testing codes - they depend on hardcoded version of NVIDIA drivers.
+ Do not fix it by copying the libraries into `/usr/lib` folder! Rewrite the hardcoded version of the driver instead.
+ - `ld -lnvcuvid --verbose` check where is the linker looking
+ - `find / -name libnvcuvid.*` find the actual location of the library
+ Change the `nvidia-375` in the next command to your version located with the previous command:
+ - `cd NVIDIA_CUDA-8.0_Samples; find . -type f -execdir sed -i 's/UBUNTU_PKG_NAME = "nvidia-367"/UBUNTU_PKG_NAME = "nvidia-375"/g' '{}' \;`
