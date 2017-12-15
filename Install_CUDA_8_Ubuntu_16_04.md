@@ -3,13 +3,13 @@
 Improved script inspired by: https://gist.github.com/mjdietzx/0ff77af5ae60622ce6ed8c4d9b419f45
 
 #### FIRSTLY check for installed CUDA or NVIDIA drivers and remove them!
-nvcc -V # check version of the CUDA Toolkit
-nvidia-smi # check that nvidia driver is working
-lsmod | grep nvidia # get loaded drivers
+ - `nvcc -V` check version of the CUDA Toolkit
+ - `nvidia-smi` check that nvidia driver is working
+ - `lsmod | grep nvidia` get loaded drivers
 
-sudo apt-get autoremove --purge cuda-8-0 # try just `cuda`
-rm -rf /usr/local/cuda-8.0/ # delete the folder if it still exists, change the version number of course
-apt remove --purge nvidia* # remove drivers
+ - `sudo apt-get autoremove --purge cuda-8-0` or try just `cuda`
+ - `rm -rf /usr/local/cuda-8.0/` delete the folder if it still exists, change the version number of course
+ - `apt remove --purge nvidia*` remove drivers
 
 #### install CUDA Toolkit v8.0:
 
@@ -22,11 +22,9 @@ sudo dpkg -i ${CUDA_REPO_PKG}
 sudo apt-get update
 ```
 
-*Install CUDA Toolkit 8:*
-`sudo apt-get -y install cuda-8-0`
+*Install CUDA Toolkit 8:* `sudo apt-get -y install cuda-8-0`
 
-*Install newest CUDA Toolkit:*
-`sudo apt-get -y install cuda`
+*Install newest CUDA Toolkit:* `sudo apt-get -y install cuda`
 
 
 #### install cuDNN v6.0:
@@ -47,7 +45,6 @@ export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 ```
 
-
 #### Verify installation:
 
  - `nvcc -V` check version of the CUDA Toolkit
@@ -64,12 +61,9 @@ cd bin/x86_64/linux/release; ./deviceQuery;
 #### Troubleshooting:
 
 *nvidia-smi returns: NVML: Driver/library version mismatch*
-
-Solution = reboot or:
-
-https://stackoverflow.com/questions/43022843/nvidia-nvml-driver-library-version-mismatch
+ - Solution = reboot or:
+ - https://stackoverflow.com/questions/43022843/nvidia-nvml-driver-library-version-mismatch
 
 *Missing locale Warnings when connecting remotely*
-
-`locale` # now set the (unset) members
-`sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8`
+ - `locale` now set the (unset) members:
+ - `sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8`
