@@ -1,6 +1,6 @@
 ## Install CUDA Toolkit 8.0 and cuDNN v6.0 on Ubuntu 16.04 64bit
 
-Improved script inspired by: https://gist.github.com/mjdietzx/0ff77af5ae60622ce6ed8c4d9b419f45
+Improved instructions inspired by: https://gist.github.com/mjdietzx/0ff77af5ae60622ce6ed8c4d9b419f45
 
 #### FIRSTLY check for installed CUDA or NVIDIA drivers and remove them!
  - `nvcc -V` check version of the CUDA Toolkit
@@ -50,7 +50,7 @@ export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY
  - `nvcc -V` check version of the CUDA Toolkit
  - `nvidia-smi` check that driver is working
 
-Test CUDA
+Test CUDA:
 
 ```
 cuda-install-samples-8.0.sh .
@@ -67,3 +67,4 @@ cd bin/x86_64/linux/release; ./deviceQuery;
 *Missing locale Warnings when connecting remotely*
  - `locale` now set the (unset) members:
  - `sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8`
+ - https://askubuntu.com/questions/162391/how-do-i-fix-my-locale-issue
