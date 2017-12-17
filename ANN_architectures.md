@@ -1,4 +1,16 @@
-## RNN
+### Perceptron
+Code examples:
+ - [Multi-layer percetron implemented in numpy](https://github.com/BartyzalRadek/neuroinformatics-course/blob/master/MLP.ipynb)
+
+### FFNN
+
+Sources:
+ - [Neural Networks and Deep Learning book](http://neuralnetworksanddeeplearning.com/)
+
+Code examples:
+ - [Playing with different simple datasets in TF](https://github.com/BartyzalRadek/neuroinformatics-course/blob/master/FFNN.ipynb)
+
+### RNN
 
 Sources:
  - The Unreasonable effectiveness of RNN: http://karpathy.github.io/2015/05/21/rnn-effectiveness/
@@ -10,7 +22,7 @@ Code examples:
  - [Minimal char-rnn in Keras](https://github.com/fchollet/keras/blob/master/examples/lstm_text_generation.py)
  - [Minimal char-rnn in Keras by me with more comments :)](https://github.com/BartyzalRadek/neuroinformatics-course/blob/master/LSTM.ipynb)
 
-## CNN
+### CNN
 
 Sources: 
  - http://cs231n.github.io/convolutional-networks/
