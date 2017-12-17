@@ -1,3 +1,15 @@
+## RNN
+
+Sources:
+ - The Unreasonable effectiveness of RNN: http://karpathy.github.io/2015/05/21/rnn-effectiveness/
+ - Great blog by Distill founder: https://colah.github.io/posts/2015-08-Understanding-LSTMs/
+ - LSTM variants, hyperparam tuning etc.: [LSTM: A Search Space Odyssey](https://arxiv.org/pdf/1503.04069.pdf)
+ 
+Code examples:
+ - [Minimal char-rnn in Numpy by Karpathy](https://gist.github.com/karpathy/d4dee566867f8291f086)
+ - [Minimal char-rnn in Keras](https://github.com/fchollet/keras/blob/master/examples/lstm_text_generation.py)
+ - [Minimal char-rnn in Keras by me with more comments :)](https://github.com/BartyzalRadek/neuroinformatics-course/blob/master/LSTM.ipynb)
+
 ## CNN
 
 Sources: 
