@@ -1,4 +1,7 @@
-### Use virtual environment kernel inside Jupyter notebook
+## Use virtual environment kernel inside Jupyter notebook
+
+### Windows
+
 1. activate environment 
 
 2. `pip3 install jupyter`
@@ -31,3 +34,23 @@ It should look like this:
  import sys
  os.path.dirname(sys.executable)
  ```
+ 
+ ### Ubuntu
+ 1. `source <ENV_NAME>/bin/activate`
+ 2. `pip3 install ipykernel`
+ 3. python3 -m ipykernel install --user --name <ENV_NAME> --display-name "<DISPLAYED NAME IN JUPYTER KERNEL SELECTION>"
+    
+    e.g.: `python3 -m ipykernel install --user --name tensorflow --display-name "TF_1.3_Python3"`
+ 4. deactivate
+ 
+ Now you can run `jupyter notebook` without activating any environment and it will have the kernel in its dropdown menu under `New`.
+
+ ### Adding Python 2(3) kernel
+ If you’re running Jupyter on Python 3, you can set up a Python 2 kernel like this:
+
+ 1. python2 -m pip install ipykernel
+ 2. python2 -m ipykernel install --user
+ 
+ Or just change 2 to 3 if you need the other way around.
+ 
+ 
