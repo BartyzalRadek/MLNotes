@@ -69,5 +69,3 @@ Notes:
    Intuitively, stacking CONV layers with tiny filters as opposed to having one CONV layer with big filters allows us 
    to express more powerful features of the input, and with fewer parameters. As a practical disadvantage, we might 
    need more memory to hold all the intermediate CONV layer results if we plan to do backpropagation.
-   
- - **In practice: use whatever works best on ImageNet.** Don't roll your own ~~crypto~~ CNN architectures :)
