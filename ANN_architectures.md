@@ -69,3 +69,9 @@ Notes:
    Intuitively, stacking CONV layers with tiny filters as opposed to having one CONV layer with big filters allows us 
    to express more powerful features of the input, and with fewer parameters. As a practical disadvantage, we might 
    need more memory to hold all the intermediate CONV layer results if we plan to do backpropagation.
+   
+ - Why are smaller filters better than larger ones?
+ 
+   ![7x7 vs 3x3](https://github.com/BartyzalRadek/MLNotes/blob/master/img/7x7_vs_3x3.png)
+   ![bottleneck vs 3x3](https://github.com/BartyzalRadek/MLNotes/blob/master/img/bottleneck_vs_3x3.png)
+   ![1x3 + 3x1 = 3x3](https://github.com/BartyzalRadek/MLNotes/blob/master/img/1x3-3x1.png)
