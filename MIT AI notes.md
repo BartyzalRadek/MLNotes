@@ -1,3 +1,6 @@
+## MIT AGI talks by Lex Fridman
+https://agi.mit.edu/
+
 
 ### Statistical Learning (Vladimir Vapnik)
 https://www.youtube.com/watch?v=STFcvzoxVw4&list=PLrAXtmErZgOdP_8GztsuKi9nrraNbKKp4
@@ -20,8 +23,12 @@ https://www.youtube.com/watch?v=STFcvzoxVw4&list=PLrAXtmErZgOdP_8GztsuKi9nrraNbK
  - ML = take space of possible function - I reduce it to an admissible set of function by using training data
  - admissible set of functions has VC dimension = small = still infinite number of functions but not that diverse = I am able to pick up the best function using only small amount of predicates = training examples
  - intelligence = finding the special predicates that help us reduce the set of possible functions the most = reduce the VC dimension of the admissible set of functions
+ - VC dimension: https://www.cs.cmu.edu/~bapoczos/Classes/ML10715_2015Fall/slides/VCdimension.pdf
 
-How to find the good predicates? How to reduce the training data? - Interesting connection to Dataset Distillation: https://arxiv.org/abs/1811.10959v1
+Notes:
+ - How to find the good predicates? How to reduce the training data? - Interesting connection to Dataset Distillation: https://arxiv.org/abs/1811.10959v1
+ - The Unreasonable Effectiveness of Mathematics in the Natural Sciences: http://www.hep.upenn.edu/~johnda/Papers/wignerUnreasonableEffectiveness.pdf
+ - Invariance = the rule is true under all condition = it is invariant
 
 ### How the brain creates emotions (Lisa Feldman Barrett)
 https://www.youtube.com/watch?v=qwsft6tmvBA&t=0s&index=17&list=PLrAXtmErZgOdP_8GztsuKi9nrraNbKKp4
