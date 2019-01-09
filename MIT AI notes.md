@@ -1,3 +1,26 @@
+
+### Statistical Learning (Vladimir Vapnik)
+https://www.youtube.com/watch?v=STFcvzoxVw4&list=PLrAXtmErZgOdP_8GztsuKi9nrraNbKKp4
+
+**Instrumentalism** = science is useful for prediction = just laws for prediction
+
+**Realism** = science describes objective truth = find God's laws = true everywhere
+
+ - for understanding I need conditional probability, for prediction I need a model
+ - math is the language used by God
+ - math shows the truth VS human intuition = misleading fantasy
+ - intuition used to create new axioms = integral wisdom of humanity
+ - imagination = only our **interpretation** of reality which can be wrong
+
+ **Great teacher** = what makes a great teacher?
+ - teacher know reality = chooses what information to give you to help you solve the task
+ - good teacher introduces a good invariant (predicate) which greatly reduces the number of admissible functions = reduces the VC dimension = diversity of admissible functions
+ - "looks like a duck, swims like a duck, quacks like a duck" - saying jumps like a duck does not add information - it is a legal predicate but it is useless
+ - now in ML we use a lot of data = we do not choose good predicates - but "good" relies on what we already know - "jumps" does not help, because we know that birds don't jump
+ - ML = take space of possible function - I reduce it to an admissible set of function by using training data
+ - admissible set of functions has VC dimension = small = still infinite number of functions but not that diverse = I am able to pick up the best function using only small amount of predicates = training examples
+ - intelligence = finding the special predicates that help us reduce the set of possible functions the most = reduce the VC dimension of the admissible set of functions
+
 ### How the brain creates emotions (Lisa Feldman Barrett)
 https://www.youtube.com/watch?v=qwsft6tmvBA&t=0s&index=17&list=PLrAXtmErZgOdP_8GztsuKi9nrraNbKKp4
 
