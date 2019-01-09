@@ -21,6 +21,8 @@ https://www.youtube.com/watch?v=STFcvzoxVw4&list=PLrAXtmErZgOdP_8GztsuKi9nrraNbK
  - admissible set of functions has VC dimension = small = still infinite number of functions but not that diverse = I am able to pick up the best function using only small amount of predicates = training examples
  - intelligence = finding the special predicates that help us reduce the set of possible functions the most = reduce the VC dimension of the admissible set of functions
 
+How to find the good predicates? How to reduce the training data? - Interesting connection to Dataset Distillation: https://arxiv.org/abs/1811.10959v1
+
 ### How the brain creates emotions (Lisa Feldman Barrett)
 https://www.youtube.com/watch?v=qwsft6tmvBA&t=0s&index=17&list=PLrAXtmErZgOdP_8GztsuKi9nrraNbKKp4
 
