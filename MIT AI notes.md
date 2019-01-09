@@ -19,7 +19,7 @@ https://www.youtube.com/watch?v=STFcvzoxVw4&list=PLrAXtmErZgOdP_8GztsuKi9nrraNbK
  - teacher know reality = chooses what information to give you to help you solve the task
  - good teacher introduces a good invariant (predicate) which greatly reduces the number of admissible functions = reduces the VC dimension = diversity of admissible functions
  - "looks like a duck, swims like a duck, quacks like a duck" - saying jumps like a duck does not add information - it is a legal predicate but it is useless
- - now in ML we use a lot of data = we do not choose good predicates - but "good" relies on what we already know - "jumps" does not help, because we know that birds don't jump
+ - now in ML we use a lot of data = we do not choose good predicates - but "good" relies on what we already know - "jumps like a duck" does not help, because we know that birds don't jump
  - ML = take space of possible function - I reduce it to an admissible set of function by using training data
  - admissible set of functions has VC dimension = small = still infinite number of functions but not that diverse = I am able to pick up the best function using only small amount of predicates = training examples
  - intelligence = finding the special predicates that help us reduce the set of possible functions the most = reduce the VC dimension of the admissible set of functions
