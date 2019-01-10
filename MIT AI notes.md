@@ -46,3 +46,56 @@ https://www.youtube.com/watch?v=qwsft6tmvBA&t=0s&index=17&list=PLrAXtmErZgOdP_8G
  - can't make brains bigger => allow other brains to regulate our nervous system = thats why we are social animals = we need other people, loneliness = die 7 years sooner
  - need for balance VS need for novelty = exploration VS exploitation = expend energy to get reward
  - depression = we expended too much energy without reward = the brain decides it does not want to expend more energy
+ 
+### Godel Machines, Meta-Learning, and LSTMs (Juergen Schmidhuber)
+https://www.youtube.com/watch?v=3FIo6evmweo&list=PLrAXtmErZgOdP_8GztsuKi9nrraNbKKp4&index=2
+
+ - General solver = improves itself = true Meta learning - limits = Goedel, physics
+ - Goedel machines = programs that rewrite themselves, http://people.idsia.ch/~juergen/goedelmachine.html
+ - good theory of problem solving - should be practical = optimal with regard to available resources
+ 
+##### Simplicity is beauty
+ - code running the universe is really simple = few lines of code = builds on layers of abstraction produced by the scientists (calculus, matrices ...)
+ - no physiscal evidence for non-deterministic universe - maybe it's all a pseudo-random algorithm
+ - look for a short program able to backtrack to the creation of universe = we don't need extra bits of information to describe each measurement of spin
+ - simplicity is beatiful, elegant - laws of reality = short programs predicting what happens 
+ - **predictive coding** = don't have to store the observations, just the law predicting them
+ - history of science = history of compression = progress = insight
+ - measure the depth of the insight = maximize it = try to see data that allows us to learns something new = exploration
+ - **power play** = lets search for pairs of (problem, solver able to solve the problem) = pose your own questions
+ - space of all the possible problems - next problem = the simplest problem that the current solver cannot solve and does not forget previous solutions
+
+##### Curiosity 
+ - evolution - exploration is good - built into us
+ - some people are extremely explorative - they die, but the rest survives 
+
+##### Creativity 
+ 1. find a solution for a problem = applied creativity
+ 2. pure creativity = find your own problems
+ 
+##### Constiousness
+ - compression is a side effect of prediction
+ - compression of the world around us => we appear in our world = compress the properties of the agent (of our body/actions) = thinking about self
+ - = necessary side effect
+ 
+##### RNN, value of depth, past + future 
+ - we need memory of the past to predict the future, classify whats happening now
+ - each timestep = virtual layer of RNN
+ - most problem currently do not require to look very far back
+ - learn to put important stuff into the memory = clever mechanism for forggetting, keeping info = LSTMs
+ - credit assignment problem millions of steps into the past = possible with LSTMs 
+ - there is 1 past but many possible futures - which one to choose = how do you plan next action sequence = Reinforcement learning = thats a problem LSTM cannot solve
+ - Model = LSTM = predictive model of the world
+ - Controller = selects the future actions
+ - Controller can learn by itself how to use the Model - maybe ignore it or use some subprograms of the Models
+ - next wave of AI = RL = machines shaping data through their actions - self-driving cars etc.
+ - babies build predictive models of the world = build machines like babies
+ 
+##### Symbolic, logic programming
+ - proof search = logic programming = asymptotically optimal = best theorem provers
+ - sub-optimal stuff = gradient descent = practical
+ 
+##### Future outlook
+ - near term: easy to say which jobs are going to disappear but hard to say which are going to be invented
+ - new jobs are constantly created
+ - countries with high level of automation have very low unemployment rates
