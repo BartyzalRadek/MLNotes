@@ -15,7 +15,7 @@ https://www.youtube.com/watch?v=STFcvzoxVw4&list=PLrAXtmErZgOdP_8GztsuKi9nrraNbK
  - intuition used to create new axioms = integral wisdom of humanity
  - imagination = only our **interpretation** of reality which can be wrong
 
- **Great teacher** = what makes a great teacher?
+#### Great teacher = what makes a great teacher?
  - teacher know reality = chooses what information to give you to help you solve the task
  - good teacher introduces a good invariant (predicate) which greatly reduces the number of admissible functions = reduces the VC dimension = diversity of admissible functions
  - "looks like a duck, swims like a duck, quacks like a duck" - saying jumps like a duck does not add information - it is a legal predicate but it is useless
@@ -95,7 +95,7 @@ https://www.youtube.com/watch?v=3FIo6evmweo&list=PLrAXtmErZgOdP_8GztsuKi9nrraNbK
  - Goedel machines = programs that rewrite themselves, http://people.idsia.ch/~juergen/goedelmachine.html
  - good theory of problem solving - should be practical = optimal with regard to available resources
  
-##### Simplicity is beauty
+#### Simplicity is beauty
  - code running the universe is really simple = few lines of code = builds on layers of abstraction produced by the scientists (calculus, matrices ...)
  - no physiscal evidence for non-deterministic universe - maybe it's all a pseudo-random algorithm
  - look for a short program able to backtrack to the creation of universe = we don't need extra bits of information to describe each measurement of spin
@@ -106,20 +106,20 @@ https://www.youtube.com/watch?v=3FIo6evmweo&list=PLrAXtmErZgOdP_8GztsuKi9nrraNbK
  - **power play** = lets search for pairs of (problem, solver able to solve the problem) = pose your own questions
  - space of all the possible problems - next problem = the simplest problem that the current solver cannot solve and does not forget previous solutions
 
-##### Curiosity 
+#### Curiosity 
  - evolution - exploration is good - built into us
  - some people are extremely explorative - they die, but the rest survives 
 
-##### Creativity 
+#### Creativity 
  1. find a solution for a problem = applied creativity
  2. pure creativity = find your own problems
  
-##### Constiousness
+#### Consciousness
  - compression is a side effect of prediction
  - compression of the world around us => we appear in our world = compress the properties of the agent (of our body/actions) = thinking about self
  - = necessary side effect
  
-##### RNN, value of depth, past + future 
+#### RNN, value of depth, past + future 
  - we need memory of the past to predict the future, classify whats happening now
  - each timestep = virtual layer of RNN
  - most problem currently do not require to look very far back
@@ -132,11 +132,11 @@ https://www.youtube.com/watch?v=3FIo6evmweo&list=PLrAXtmErZgOdP_8GztsuKi9nrraNbK
  - next wave of AI = RL = machines shaping data through their actions - self-driving cars etc.
  - babies build predictive models of the world = build machines like babies
  
-##### Symbolic, logic programming
+#### Symbolic, logic programming
  - proof search = logic programming = asymptotically optimal = best theorem provers
  - sub-optimal stuff = gradient descent = practical
  
-##### Future outlook
+#### Future outlook
  - near term: easy to say which jobs are going to disappear but hard to say which are going to be invented
  - new jobs are constantly created
  - countries with high level of automation have very low unemployment rates
