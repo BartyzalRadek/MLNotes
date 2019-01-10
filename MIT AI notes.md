@@ -46,7 +46,48 @@ https://www.youtube.com/watch?v=qwsft6tmvBA&t=0s&index=17&list=PLrAXtmErZgOdP_8G
  - can't make brains bigger => allow other brains to regulate our nervous system = thats why we are social animals = we need other people, loneliness = die 7 years sooner
  - need for balance VS need for novelty = exploration VS exploitation = expend energy to get reward
  - depression = we expended too much energy without reward = the brain decides it does not want to expend more energy
+
+### Deep Reinforcement Learning (Pieter Abbeel)
+https://www.youtube.com/watch?v=l-mYLq6eZPY&index=3&list=PLrAXtmErZgOdP_8GztsuKi9nrraNbKKp4
+
+ - problem is both HW and SW
+ - easy to psychol. connect to the robot
+ - its a RL problem - optimize for likability of the robot by people - how to give it feedback?
+ - numeric rewards are hard to come by - its easier for people to compare = say this is better/worse
+ - reward is delayed + sparse -> what actions were present when I get high reward = make them more probable
+ - simple control architecture can effectively control complex systems - linear feedback control can stabilise a helicopter
+ - linear feedback control is very good, but not good enough
+ - Neural net tiles the space = layers the linear controllers => it works even better
+ - we need **hierarchical reasoning** to make higher level decision like doing a PHD vs contracting specific muscles
+ - limitation of old reasoning systems: they weren't grounded in real world, that connection had to be hand coded
+ - DL -> can see/understand world around us = connect itself to the real world
+ - hierarchy gives us better credit assignment = faster learning
+ - lets just end-to-end optimize for faster learning = get hierarchy
+
+#### Transfer learning
+ - levels of generalization
+ - learning to master = motion of planets now VS learning to generalize = motion of planets after new planet enters the system
+ - neocortex is fairly modular (same parts can be used for different things) = can we design smth similarly modular?
+
+#### Imitation learning VS Self play
+ - Imitation learning = copy teacher
+ - Self play = 
+ - challenge of RL is getting signal = self play = I always get a signal = can naturally learn much quickly
+ - = turn as much problems to self play as possible = faster learning
+ - cannot use self play -> give partial rewards for completing sub tasks -> a lot of partial rewards -> why not just show the robot what to do?
+ - how to show what to do?
+   - guide the robot - high signal to noise ratio = fast learning
+   - show the robot through 3rd party = robot sees us, but doesn't experience it = has to map your hand to its hand = like machine translation for demonstration 
+
+#### Simulators
+ - ensemble of simulators, none of them are perfect, but if I train in all of them the real world is just another simulation for the robot   
  
+#### Representative tests of complex ability
+ - drivers licence = short test but representative of human's skill to drive - how to do that for a machine?
+ - how to design a representative test of a complex ability
+
+
+
 ### Godel Machines, Meta-Learning, and LSTMs (Juergen Schmidhuber)
 https://www.youtube.com/watch?v=3FIo6evmweo&list=PLrAXtmErZgOdP_8GztsuKi9nrraNbKKp4&index=2
 
