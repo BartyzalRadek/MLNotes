@@ -66,7 +66,7 @@ https://www.youtube.com/watch?v=l-mYLq6eZPY&index=3&list=PLrAXtmErZgOdP_8GztsuKi
 
 #### Transfer learning
  - levels of generalization
- - learning to master = motion of planets now VS learning to generalize = motion of planets after new planet enters the system
+ - **learning to master** = motion of planets now VS **learning to generalize** = motion of planets after new planet enters the system
  - neocortex is fairly modular (same parts can be used for different things) = can we design smth similarly modular?
 
 #### Imitation learning VS Self play
@@ -84,9 +84,7 @@ https://www.youtube.com/watch?v=l-mYLq6eZPY&index=3&list=PLrAXtmErZgOdP_8GztsuKi
  
 #### Representative tests of complex ability
  - drivers licence = short test but representative of human's skill to drive - how to do that for a machine?
- - how to design a representative test of a complex ability
-
-
+                                                                                                     
 
 ### Godel Machines, Meta-Learning, and LSTMs (Juergen Schmidhuber)
 https://www.youtube.com/watch?v=3FIo6evmweo&list=PLrAXtmErZgOdP_8GztsuKi9nrraNbKKp4&index=2
