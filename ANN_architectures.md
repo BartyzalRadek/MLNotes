@@ -31,9 +31,9 @@ Sources:
  - 1 LSTM layer = 1 LSTM cell = 1 box on the diagram
  - 1 LSTM cell processes a sequences of vectors and returns a sequence of vectors
 
-![LSTM cell unrolled in time](https://github.com/BartyzalRadek/MLNotes/blob/master/img/LSTM_chain.png) 
+![LSTM cell unrolled in time](https://github.com/BartyzalRadek/MLNotes/blob/master/img/LSTM-chain.png) 
 
-![LSTM notation](https://github.com/BartyzalRadek/MLNotes/blob/master/img/LSTM_notation.png)
+![LSTM notation](https://github.com/BartyzalRadek/MLNotes/blob/master/img/LSTM-notation.png)
 
  - Sigmoid Neural Network Layer = densely connected feed-forward layer with Sigmoid activation
  - Sigmoid returns [0,1]
