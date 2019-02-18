@@ -22,20 +22,20 @@ Code examples:
  
 ### LSTM 
 
-Sources:
- - Great blog by Distill founder: https://colah.github.io/posts/2015-08-Understanding-LSTMs/
+**Sources:**
+ - Great blog by Distill founder: https://colah.github.io/posts/2015-08-Understanding-LSTMs/ = source of the diagrams!
  - LSTM variants, hyperparam tuning etc.: [LSTM: A Search Space Odyssey](https://arxiv.org/pdf/1503.04069.pdf)
  
 **Explanation:**
 
  - 1 LSTM layer = 1 LSTM cell = 1 box on the diagram
- - 1 LSTM cell processes a sequences of vectors and returns a sequence of vectors
+ - 1 LSTM cell processes a sequences of vectors **x_t** and returns a sequence of vectors **h_t**
 
 ![LSTM cell unrolled in time](https://github.com/BartyzalRadek/MLNotes/blob/master/img/LSTM-chain.png) 
 
 ![LSTM notation](https://github.com/BartyzalRadek/MLNotes/blob/master/img/LSTM-notation.png)
 
- - Sigmoid Neural Network Layer = densely connected feed-forward layer with Sigmoid activation
+ - Sigmoid/Tanh Neural Network Layer = densely connected feed-forward layer with Sigmoid/Tanh activation
  - Sigmoid returns [0,1]
  - Tanh returns [-1, 1] - used as normalization + has better gradients than Sigmoid
 
