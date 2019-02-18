@@ -54,7 +54,6 @@ model.compile(optimizer='adam', loss='mse')
  - It can be imagined as the LSTM cell unrolled in time with another one on top of it with **x_t** replaced by **h_t** of the first LSTM layer:
    - **x_0** -> LSTM_0 -> **h_0_0** -> LSTM_1 -> **h_0_1** -> ... -> first element of output sequence
    - **x_1** -> LSTM_0 -> **h_1_0** -> LSTM_1 -> **h_1_1** -> ... -> second element of output sequence
- - Or it can be imagined as each unrolled LSTM cell having a multi-layer feed-forward network instead of a single densely connected layer
 
 ### CNN
 
