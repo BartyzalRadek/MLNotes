@@ -38,6 +38,22 @@ Code examples:
  - Sigmoid/Tanh Neural Network Layer = densely connected feed-forward layer with Sigmoid/Tanh activation
  - Sigmoid returns [0,1]
  - Tanh returns [-1, 1] - used as normalization + has better gradients than Sigmoid
+ 
+### Stacked LSTM
+
+```
+model = Sequential()
+model.add(LSTM(layer_size, return_sequences=True, input_shape=(3,1)))
+model.add(LSTM(layer_size, return_sequences=True))
+model.add(LSTM(layer_size, return_sequences=True))
+model.compile(optimizer='adam', loss='mse')
+```
+
+ - The first LSTM layer LSTM_0 gets input sequence **X** and return a sequence **S_1**
+ - The second LSTM layer LSTM_1 gets input **S_1** and outputs a sequence **S_2** etc.
+ - It can be imagined as the LSTM cell unrolled in time with another one on top of it with **x_t** replaced by **h_t** of the first LSTM layer:
+   - **x_0** -> LSTM_0 -> **h_0_0** -> LSTM_1 -> **h_0_1** -> ... -> first element of output sequence
+   - **x_1** -> LSTM_0 -> **h_1_0** -> LSTM_1 -> **h_1_1** -> ... -> second element of output sequence
 
 ### CNN
 
