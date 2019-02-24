@@ -1,5 +1,7 @@
 ## Differences between word embedding types
 
+All embeddings are **distributed representation** = word’s meaning is distributed across the whole vector, we cannot interpret dimensions separately.
+
 #### Fixed vs contextual:
 
  - **fixed word representation:**
@@ -44,13 +46,14 @@
    - can usually handle unseen words
    - generates one vector per word
    
- - **ELMo:**
+ - **ELMo: = Embeddings from Language Models**
    - contextual
    - character-based, providing vectors for each character that can combined through a deep learning model or simply averaged to get a word vector 
    - official implementation uses character level convolutions to produce word-level embeddings, followed by BiLSTMs to make them contextual
+   - BiLSTM = train one neural network for left contexts (going back to the beginning of the sentence a token appears in) and another neural network for right contexts (up to the end of the sentence).
    
    
- - **BERT:**
+ - **BERT: Bidirectional Encoder Representations from Transformers**
    - contextual 
    - chunking unrecognized words into ngrams it recognizes (e.g. circumlocution might be broken into "circum", "locu" and "tion"), and these ngrams can be averaged into whole-word vectors
    - uses [wordpiece]{https://arxiv.org/pdf/1609.08144.pdf} tokenization of input words
