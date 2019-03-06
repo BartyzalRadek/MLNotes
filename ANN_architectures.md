@@ -32,9 +32,9 @@ Code examples:
  - 1 LSTM layer = 1 LSTM cell = 1 box on the diagram
  - 1 LSTM cell processes a sequences of vectors **x_t** and returns a sequence of vectors **h_t**
 
-![LSTM cell unrolled in time](https://github.com/BartyzalRadek/MLNotes/blob/master/img/LSTM-chain.png) 
+<img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/LSTM-chain.png" alt="LSTM cell unrolled in time" width="600"/> 
 
-![LSTM notation](https://github.com/BartyzalRadek/MLNotes/blob/master/img/LSTM-notation.png)
+<img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/LSTM-notation.png" alt="LSTM notation" width="300"/>
 
  - Sigmoid/Tanh Neural Network Layer = densely connected feed-forward layer with Sigmoid/Tanh activation
  - Sigmoid returns [0,1]
@@ -105,7 +105,7 @@ seq2seq learning:
    - input: 
      - processed context = single RNN_output_dim sized vector
      - h_{t-1}
-   - output:
+   - output: h_t = hidden representation at time t that is then passed through a FFNN to get distribution over classes (characters, words, etc..)
   - Attention calculation at time step = 4 = input sequence has length 3 = we have 3 hidden states from encoder and now we are decoding:
   - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/attention_vec.png" alt="Attention calculation" width="600"/>
 
