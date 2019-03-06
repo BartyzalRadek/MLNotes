@@ -81,8 +81,9 @@ seq2seq learning:
  - process whole input sequence and then generate the new sequence
  - e.g. machine translation
 
-**Sequence-to-Sequence architectures: (mainly from machine translation POV)**
- - Encoder-Decoder architecture:
+### Sequence-to-Sequence architectures: (mainly from machine translation POV)
+
+#### Encoder-Decoder architecture
     - <img src="https://cdn-images-1.medium.com/max/1250/1*yG2htcHJF9h0sohcZbBEkg.png" alt="Encoder-Decoder with fixed-size contex vector." width="600"/>
     - Encoder = RNN: processes whole input sequence and outputs a single fixed-size contex vector C representing it
     - Decoder = RNN: at each time step t:
@@ -94,7 +95,7 @@ seq2seq learning:
       - Decoder = RNN generating text from the context vector
       - [Show and Tell: A Neural Image Caption Generator](https://arxiv.org/abs/1411.4555)
     
- - Encoder-Decoder with Attention:
+#### Encoder-Decoder with Attention
    - containing all information about a long input sequence in one fixed-size vector is hard => attention
    - save all the hidden states of the encoder not just the last one (previously called C)
    - context is now a list of hidden states (or RNN outputs) with same length as the input sequence = input_seq_len * RNN_output_dim matrix
@@ -106,7 +107,8 @@ seq2seq learning:
        - h_{t-1}
      - output:
    - Attention calculation at time step = 4 = input sequence has length 3 = we have 3 hidden states from encoder and now we are decoding:
-   - ![Attention calculation](https://github.com/BartyzalRadek/MLNotes/blob/master/img/attention_vec.png)
+   - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/attention_vec.png" alt="Attention calculation" width="600"/>
+
 
 # CNN
 
