@@ -56,7 +56,7 @@ model.compile(optimizer='adam', loss='mse')
    - **x_0** -> LSTM_0 -> **h_0_0** -> LSTM_1 -> **h_0_1** -> ... -> first element of output sequence
    - **x_1** -> LSTM_0 -> **h_1_0** -> LSTM_1 -> **h_1_1** -> ... -> second element of output sequence
    
-### Attention in Sequence-to-Sequence
+## Sequence-to-Sequence
 
 **Sources:**
 
@@ -66,7 +66,7 @@ Attention seq2seq models from translation:
 seq2seq learning:
  - [Sequence to Sequence Learning with Neural Networks](https://arxiv.org/abs/1409.3215)
  - [Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation](https://arxiv.org/abs/1406.1078v3)
- - [Blogpost](https://medium.com/@devnag/seq2seq-the-clown-car-of-deep-learning-f88e1204dac3)
+ - [Blogpost - source for seq2seq image](https://medium.com/@devnag/seq2seq-the-clown-car-of-deep-learning-f88e1204dac3)
 
 **Sequence Modeling:**
  - = predict after each time step: x_t -> y_t
@@ -80,18 +80,28 @@ seq2seq learning:
  - process whole input sequence and then generate the new sequence
  - e.g. machine translation
 
-**Machine translation: seq2seq**
+**Sequence-to-Sequence architectures: (mainly from machine translation POV)**
  - Encoder-Decoder architecture:
-    - Encoder = RNN: processes whole input sequence and outputs a single contex vector C representing it.
+    - <img src="https://cdn-images-1.medium.com/max/1250/1*yG2htcHJF9h0sohcZbBEkg.png" alt="Encoder-Decoder with fixed-size contex vector." width="600"/>
+    - Encoder = RNN: processes whole input sequence and outputs a single fixed-size contex vector C representing it
     - Decoder = RNN: at each time step t:
       - input: C and h_{t-1}
       - output: h_t = hidden representation at time t that is then passed through a FFNN to get distribution over classes (characters, words, etc..)   
     - Encoder and Decoder can but usually don't share their weights
-    - containing all information about the input sequence in one fixed-size vector is hard
-    - solution = attention
-    - <img src="https://cdn-images-1.medium.com/max/1250/1*yG2htcHJF9h0sohcZbBEkg.png" alt="Encoder-Decoder with fixed-size contex vector." width="600"/>
+    - input does not have to be a sequence: generate text descriptions for images:
+      - Encoder = CNN outputting context vector
+      - Decoder = RNN generating text from the context vector
+      - [Show and Tell: A Neural Image Caption Generator](https://arxiv.org/abs/1411.4555)
+    
  - Encoder-Decoder with Attention:
-   -  
+   - containing all information about a long input sequence in one fixed-size vector is hard => attention
+   - save all the hidden states of the encoder not just the last one (previously called C)
+   - context is now a list of hidden states (or RNN outputs) with same length as the input sequence
+   - Decoder = RNN: at each time step t:
+     - input: 
+       - context = input_seq_len * RNN_output_dim matrix
+       - h_{t-1}
+       -   
 
 # CNN
 
