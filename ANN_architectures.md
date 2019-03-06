@@ -89,7 +89,8 @@ seq2seq learning:
     - Encoder and Decoder can but usually don't share their weights
     - containing all information about the input sequence in one fixed-size vector is hard
     - solution = attention
-    - <img src="https://cdn-images-1.medium.com/max/1250/1*yG2htcHJF9h0sohcZbBEkg.png" alt="Encoder-Decoder with fixed-size contex vector." width="200"/>
+    - <img src="https://cdn-images-1.medium.com/max/1250/1*yG2htcHJF9h0sohcZbBEkg.png" alt="Encoder-Decoder with fixed-size contex vector." width="600"/>
+    - ![Encoder-Decoder with fixed-size contex vector](https://cdn-images-1.medium.com/max/1250/1*yG2htcHJF9h0sohcZbBEkg.png)
  - Encoder-Decoder with Attention:
    -  
 
