@@ -66,6 +66,7 @@ Attention seq2seq models from translation:
 seq2seq learning:
  - [Sequence to Sequence Learning with Neural Networks](https://arxiv.org/abs/1409.3215)
  - [Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation](https://arxiv.org/abs/1406.1078v3)
+ - [TensorFlow Neural Machine Translation (seq2seq) Tutorial](https://github.com/tensorflow/nmt)
  - [Blogpost - source for seq2seq image](https://medium.com/@devnag/seq2seq-the-clown-car-of-deep-learning-f88e1204dac3)
 
 **Sequence Modeling:**
