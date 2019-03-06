@@ -97,12 +97,16 @@ seq2seq learning:
  - Encoder-Decoder with Attention:
    - containing all information about a long input sequence in one fixed-size vector is hard => attention
    - save all the hidden states of the encoder not just the last one (previously called C)
-   - context is now a list of hidden states (or RNN outputs) with same length as the input sequence
+   - context is now a list of hidden states (or RNN outputs) with same length as the input sequence = input_seq_len * RNN_output_dim matrix
    - Decoder = RNN: at each time step t:
+     - process the context list into a single fixed-size vector by attention
+     - = weighted sum over the hidden states - the weights are generated at each step = focus on different parts of the input
      - input: 
-       - context = input_seq_len * RNN_output_dim matrix
+       - processed context = single RNN_output_dim sized vector
        - h_{t-1}
-       -   
+     - output:
+   - Attention calculation at time step = 4 = input sequence has length 3 = we have 3 hidden states from encoder and now we are decoding:
+   - ![Attention calculation](https://github.com/BartyzalRadek/MLNotes/blob/master/img/attention_vec.png)
 
 # CNN
 
