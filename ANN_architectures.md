@@ -58,6 +58,8 @@ model.compile(optimizer='adam', loss='mse')
    
 #### Attention in Sequence-to-Sequence
 
+**Sources:**
+
 Attention seq2seq models from translation: 
  - [Blogpost with visualizations](https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/)
  
@@ -79,8 +81,17 @@ seq2seq learning:
  - e.g. machine translation
 
 **Machine translation: seq2seq**
- 1. 
-
+ - Encoder-Decoder architecture:
+    - Encoder = RNN: processes whole input sequence and outputs a single contex vector C representing it.
+    - Decoder = RNN: at each time step t:
+      - input: C and h_{t-1}
+      - output: h_t = hidden representation at time t that is then passed through a FFNN to get distribution over classes (characters, words, etc..)   
+    - Encoder and Decoder can but usually don't share their weights
+    - containing all information about the input sequence in one fixed-size vector is hard
+    - solution = attention
+    - <img src="https://cdn-images-1.medium.com/max/1250/1*yG2htcHJF9h0sohcZbBEkg.png" alt="Encoder-Decoder with fixed-size contex vector." width="200"/>
+ - Encoder-Decoder with Attention:
+   -  
 
 ### CNN
 
