@@ -6,6 +6,7 @@ Code examples:
 
 Sources:
  - [Neural Networks and Deep Learning book](http://neuralnetworksanddeeplearning.com/)
+ - [Introduction to Deep Learning by Eugene Charniak](https://cs.brown.edu/courses/csci1460/assets/files/deep-learning.pdf)
 
 Code examples:
  - [Playing with different simple datasets in TF](https://github.com/BartyzalRadek/neuroinformatics-course/blob/master/FFNN.ipynb)
@@ -20,7 +21,7 @@ Code examples:
  - [Minimal char-rnn in Keras](https://github.com/fchollet/keras/blob/master/examples/lstm_text_generation.py)
  - [Minimal char-rnn in Keras by me with more comments :)](https://github.com/BartyzalRadek/neuroinformatics-course/blob/master/LSTM.ipynb)
  
-### LSTM 
+#### LSTM 
 
 **Sources:**
  - Great blog by Distill founder: https://colah.github.io/posts/2015-08-Understanding-LSTMs/ = source of the diagrams!
@@ -39,7 +40,7 @@ Code examples:
  - Sigmoid returns [0,1]
  - Tanh returns [-1, 1] - used as normalization + has better gradients than Sigmoid
  
-### Stacked LSTM
+#### Stacked LSTM
 
 ```
 model = Sequential()
@@ -54,13 +55,39 @@ model.compile(optimizer='adam', loss='mse')
  - It can be imagined as the LSTM cell unrolled in time with another one on top of it with **x_t** replaced by **h_t** of the first LSTM layer:
    - **x_0** -> LSTM_0 -> **h_0_0** -> LSTM_1 -> **h_0_1** -> ... -> first element of output sequence
    - **x_1** -> LSTM_0 -> **h_1_0** -> LSTM_1 -> **h_1_1** -> ... -> second element of output sequence
+   
+#### Attention in Sequence-to-Sequence
+
+Attention seq2seq models from translation: 
+ - [Blogpost with visualizations](https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/)
+ 
+seq2seq learning:
+ - [Sequence to Sequence Learning with Neural Networks](https://arxiv.org/abs/1409.3215)
+ - [Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation](https://arxiv.org/abs/1406.1078v3)
+ - [Blogpost](https://medium.com/@devnag/seq2seq-the-clown-car-of-deep-learning-f88e1204dac3)
+
+**Sequence Modeling:**
+ - = predict after each time step: x_t -> y_t
+ - predictions based only on the previous elements in the sequence
+ - Dilated Convolutions (TCN = Temporal Convolutional Nets) VS RNN: 
+   - Paper: https://arxiv.org/abs/1803.01271
+   - Code by authors: https://github.com/locuslab/TCN
+   - My talk + handout: https://github.com/BartyzalRadek/lets-talk-ml/blob/master/talks/CNN_vs_RNN
+ 
+**Sequence-to-Sequence:**
+ - process whole input sequence and then generate the new sequence
+ - e.g. machine translation
+
+**Machine translation: seq2seq**
+ 1. 
+
 
 ### CNN
 
-Sources: 
+**Sources:** 
  - http://cs231n.github.io/convolutional-networks/
 
-Notes: 
+**Notes:** 
  - For example, suppose that the input volume has size [32x32x3], (e.g. an RGB CIFAR-10 image). 
  If the receptive field (or the filter size) is 5x5, 
  then each neuron in the Conv Layer will have weights to a [5x5x3] region in the input volume, 
@@ -108,3 +135,6 @@ Notes:
    ![7x7 vs 3x3](https://github.com/BartyzalRadek/MLNotes/blob/master/img/7x7_vs_3x3.png)
    ![bottleneck vs 3x3](https://github.com/BartyzalRadek/MLNotes/blob/master/img/bottleneck_vs_3x3.png)
    ![1x3 + 3x1 = 3x3](https://github.com/BartyzalRadek/MLNotes/blob/master/img/1x3-3x1.png)
+
+
+#### Dilated Convolutions
