@@ -84,30 +84,30 @@ seq2seq learning:
 ### Sequence-to-Sequence architectures: (mainly from machine translation POV)
 
 #### Encoder-Decoder architecture
-    - <img src="https://cdn-images-1.medium.com/max/1250/1*yG2htcHJF9h0sohcZbBEkg.png" alt="Encoder-Decoder with fixed-size contex vector." width="600"/>
-    - Encoder = RNN: processes whole input sequence and outputs a single fixed-size contex vector C representing it
-    - Decoder = RNN: at each time step t:
-      - input: C and h_{t-1}
-      - output: h_t = hidden representation at time t that is then passed through a FFNN to get distribution over classes (characters, words, etc..)   
-    - Encoder and Decoder can but usually don't share their weights
-    - input does not have to be a sequence: generate text descriptions for images:
-      - Encoder = CNN outputting context vector
-      - Decoder = RNN generating text from the context vector
-      - [Show and Tell: A Neural Image Caption Generator](https://arxiv.org/abs/1411.4555)
+  - <img src="https://cdn-images-1.medium.com/max/1250/1*yG2htcHJF9h0sohcZbBEkg.png" alt="Encoder-Decoder with fixed-size contex vector." width="600"/>
+  - Encoder = RNN: processes whole input sequence and outputs a single fixed-size contex vector C representing it
+  - Decoder = RNN: at each time step t:
+    - input: C and h_{t-1}
+    - output: h_t = hidden representation at time t that is then passed through a FFNN to get distribution over classes (characters, words, etc..)   
+  - Encoder and Decoder can but usually don't share their weights
+  - input does not have to be a sequence: generate text descriptions for images:
+    - Encoder = CNN outputting context vector
+    - Decoder = RNN generating text from the context vector
+    - [Show and Tell: A Neural Image Caption Generator](https://arxiv.org/abs/1411.4555)
     
 #### Encoder-Decoder with Attention
-   - containing all information about a long input sequence in one fixed-size vector is hard => attention
-   - save all the hidden states of the encoder not just the last one (previously called C)
-   - context is now a list of hidden states (or RNN outputs) with same length as the input sequence = input_seq_len * RNN_output_dim matrix
-   - Decoder = RNN: at each time step t:
-     - process the context list into a single fixed-size vector by attention
-     - = weighted sum over the hidden states - the weights are generated at each step = focus on different parts of the input
-     - input: 
-       - processed context = single RNN_output_dim sized vector
-       - h_{t-1}
-     - output:
-   - Attention calculation at time step = 4 = input sequence has length 3 = we have 3 hidden states from encoder and now we are decoding:
-   - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/attention_vec.png" alt="Attention calculation" width="600"/>
+  - containing all information about a long input sequence in one fixed-size vector is hard => attention
+  - save all the hidden states of the encoder not just the last one (previously called C)
+  - context is now a list of hidden states (or RNN outputs) with same length as the input sequence = input_seq_len * RNN_output_dim matrix
+  - Decoder = RNN: at each time step t:
+   - process the context list into a single fixed-size vector by attention
+   - = weighted sum over the hidden states - the weights are generated at each step = focus on different parts of the input
+   - input: 
+     - processed context = single RNN_output_dim sized vector
+     - h_{t-1}
+   - output:
+  - Attention calculation at time step = 4 = input sequence has length 3 = we have 3 hidden states from encoder and now we are decoding:
+  - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/attention_vec.png" alt="Attention calculation" width="600"/>
 
 
 # CNN
