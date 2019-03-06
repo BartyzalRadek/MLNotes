@@ -1,8 +1,8 @@
-### Perceptron
+# Perceptron
 Code examples:
  - [Multi-layer percetron implemented in numpy](https://github.com/BartyzalRadek/neuroinformatics-course/blob/master/MLP.ipynb)
 
-### FFNN
+# FFNN
 
 Sources:
  - [Neural Networks and Deep Learning book](http://neuralnetworksanddeeplearning.com/)
@@ -11,7 +11,7 @@ Sources:
 Code examples:
  - [Playing with different simple datasets in TF](https://github.com/BartyzalRadek/neuroinformatics-course/blob/master/FFNN.ipynb)
 
-### RNN
+# RNN
 
 Sources:
  - The Unreasonable effectiveness of RNN: http://karpathy.github.io/2015/05/21/rnn-effectiveness/
@@ -21,7 +21,7 @@ Code examples:
  - [Minimal char-rnn in Keras](https://github.com/fchollet/keras/blob/master/examples/lstm_text_generation.py)
  - [Minimal char-rnn in Keras by me with more comments :)](https://github.com/BartyzalRadek/neuroinformatics-course/blob/master/LSTM.ipynb)
  
-#### LSTM 
+## LSTM 
 
 **Sources:**
  - Great blog by Distill founder: https://colah.github.io/posts/2015-08-Understanding-LSTMs/ = source of the diagrams!
@@ -40,7 +40,7 @@ Code examples:
  - Sigmoid returns [0,1]
  - Tanh returns [-1, 1] - used as normalization + has better gradients than Sigmoid
  
-#### Stacked LSTM
+### Stacked LSTM
 
 ```
 model = Sequential()
@@ -56,7 +56,7 @@ model.compile(optimizer='adam', loss='mse')
    - **x_0** -> LSTM_0 -> **h_0_0** -> LSTM_1 -> **h_0_1** -> ... -> first element of output sequence
    - **x_1** -> LSTM_0 -> **h_1_0** -> LSTM_1 -> **h_1_1** -> ... -> second element of output sequence
    
-#### Attention in Sequence-to-Sequence
+### Attention in Sequence-to-Sequence
 
 **Sources:**
 
@@ -90,11 +90,10 @@ seq2seq learning:
     - containing all information about the input sequence in one fixed-size vector is hard
     - solution = attention
     - <img src="https://cdn-images-1.medium.com/max/1250/1*yG2htcHJF9h0sohcZbBEkg.png" alt="Encoder-Decoder with fixed-size contex vector." width="600"/>
-    - ![Encoder-Decoder with fixed-size contex vector](https://cdn-images-1.medium.com/max/1250/1*yG2htcHJF9h0sohcZbBEkg.png)
  - Encoder-Decoder with Attention:
    -  
 
-### CNN
+# CNN
 
 **Sources:** 
  - http://cs231n.github.io/convolutional-networks/
