@@ -61,9 +61,9 @@ def load_json(path):
 def save_json(data, path):
     """
     Save JSON into a file.
-    :param data:      The JSON data.
-    :param path:      Where to save the JSON data.
-    :return:          None.
+    :param data:    The JSON data.
+    :param path:    Where to save the JSON data.
+    :return:        None.
     """
     with open(path, "w") as file:
         json.dump(data, file, indent=4, sort_keys=True)
@@ -72,7 +72,7 @@ def save_json(data, path):
 def print_memory_info(indent_level=0):
     """
     logging.debug total used, available memory and this process's memory.
-    :param indent_level: How many spaces should be used for indentation.
+    :param indent_level:    How many spaces should be used for indentation.
     """
     indent = ' ' * indent_level
     process = psutil.Process(os.getpid())
@@ -91,11 +91,11 @@ def init_logging(log_dir=None, log_filename=None, level=logging.DEBUG,
         import logging
         logger = logging.getLogger(__name__)
         logger.info(...)
-    :param log_dir: Directory to store logfile in, will be created if it does not exist. None = '.'
-    :param log_filename: If None = do not log to file.
-    :param level: Default is logging.DEBUG.
-    :param fmt: Format of all log messages, default is '%(asctime)s %(message)s'
-    :return: Nothing
+    :param log_dir:         Directory to store logfile in, will be created if it does not exist. None = '.'
+    :param log_filename:    If None = do not log to file.
+    :param level:           Default is logging.DEBUG.
+    :param fmt:             Format of all log messages, default is '%(asctime)s %(message)s'
+    :return:                Nothing
     """
     if log_dir is None:
         log_dir = '.'
