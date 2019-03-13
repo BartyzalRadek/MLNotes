@@ -82,19 +82,21 @@ def print_memory_info(indent_level=0):
 
 
 def init_logging(log_dir=None, log_filename=None, level=logging.DEBUG,
-                 fmt='%(asctime)s %(name)s %(levelname)s: %(message)s'):
+                 fmt='%(asctime)s %(name)s %(levelname)s: %(message)s',
+                 max_bytes=1024 ** 2, backup_count=20):
     """
     Initializes logging with handlers for both stdout and file if provided.
     How to use:
-     - call this method to init logging in whole project (typically in main)
-     - in every file:
+     1. call this method once to init logging in whole project: init_logging(log_dir='log', log_filename='test')
+     2. in every file:
         import logging
         logger = logging.getLogger(__name__)
-        logger.info(...)
     :param log_dir:         Directory to store logfile in, will be created if it does not exist. None = '.'
-    :param log_filename:    If None = do not log to file.
+    :param log_filename:    Do not include extension. If None = do not log to file.
     :param level:           Default is logging.DEBUG.
     :param fmt:             Format of all log messages, default is '%(asctime)s %(message)s'
+    :param max_bytes:       Maximum number of bytes in a log file before creating a new file.
+    :param backup_count:    Maximum number of kept past log files.
     :return:                Nothing
     """
     if log_dir is None:
@@ -113,19 +115,19 @@ def init_logging(log_dir=None, log_filename=None, level=logging.DEBUG,
     error_log_filename = None
     if log_filename is not None:
         ensure_dir_exists(log_dir)
+        timestamp = get_timestamp_filename()
 
-        log_filename = get_timestamp_filename() + '_' + log_filename
-
-        normal_log_filename = 'NORMAL_' + log_filename
+        normal_log_filename = '{}_NORMAL_{}.log'.format(log_filename, timestamp)
         normal_file_handler = logging.handlers.RotatingFileHandler(filename=normal_log_filename, mode='a',
-                                                                   maxBytes=1024 * 1024, backupCount=20,
+                                                                   maxBytes=max_bytes, backupCount=backup_count,
                                                                    encoding='utf8')
         normal_file_handler.setFormatter(formatter)
         normal_file_handler.setLevel(level)
 
-        error_log_filename = 'ERROR_' + log_filename
+        error_log_filename = '{}_ERROR_{}.log'.format(log_filename, timestamp)
         error_file_handler = logging.handlers.RotatingFileHandler(filename=error_log_filename, mode='a',
-                                                                  maxBytes=1024 * 1024, backupCount=20, encoding='utf8')
+                                                                  maxBytes=max_bytes, backupCount=backup_count,
+                                                                  encoding='utf8')
         error_file_handler.setFormatter(formatter)
         error_file_handler.setLevel(logging.ERROR)
 
