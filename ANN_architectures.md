@@ -56,7 +56,7 @@ model.compile(optimizer='adam', loss='mse')
    - **x_0** -> LSTM_0 -> **h_0_0** -> LSTM_1 -> **h_0_1** -> ... -> first element of output sequence
    - **x_1** -> LSTM_0 -> **h_1_0** -> LSTM_1 -> **h_1_1** -> ... -> second element of output sequence
    
-## Sequence-to-Sequence
+## Sequence-to-Sequence architectures: (mainly from machine translation POV)
 
 **Sources:**
 
@@ -81,9 +81,8 @@ seq2seq learning:
  - process whole input sequence and then generate the new sequence
  - e.g. machine translation
 
-### Sequence-to-Sequence architectures: (mainly from machine translation POV)
 
-#### Encoder-Decoder architecture
+### Encoder-Decoder architecture
   - <img src="https://cdn-images-1.medium.com/max/1250/1*yG2htcHJF9h0sohcZbBEkg.png" alt="Encoder-Decoder with fixed-size contex vector." width="600"/>
   - Encoder = RNN: processes whole input sequence and outputs a single fixed-size contex vector C representing it
   - Decoder = RNN: at each time step t:
@@ -95,7 +94,7 @@ seq2seq learning:
     - Decoder = RNN generating text from the context vector
     - [Show and Tell: A Neural Image Caption Generator](https://arxiv.org/abs/1411.4555)
     
-#### Encoder-Decoder with Attention
+### Encoder-Decoder with Attention
   - containing all information about a long input sequence in one fixed-size vector is hard => attention
   - save all the hidden states of the encoder not just the last one (previously called C)
   - context is now a list of hidden states (or RNN outputs) with same length as the input sequence = input_seq_len * RNN_output_dim matrix
@@ -109,6 +108,12 @@ seq2seq learning:
   - Attention calculation at time step = 4 = input sequence has length 3 = we have 3 hidden states from encoder and now we are decoding:
   - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/attention_vec.png" alt="Attention calculation" width="600"/>
 
+### Transformer
+  - [Orig paper: Attention Is All You Need](https://arxiv.org/abs/1706.03762)
+  - [pytorch impl. with a blogpost](https://medium.com/@kolloldas/building-the-mighty-transformer-for-sequence-tagging-in-pytorch-part-ii-c85bf8fd145)
+  - [tensor2tensor library with official implementation of Transformer in TF](https://github.com/tensorflow/tensor2tensor/tree/master/tensor2tensor/models)
+  - [Illustrated Transformer = source for used imgs](http://jalammar.github.io/illustrated-transformer/)
+  
 
 # CNN
 
@@ -140,6 +145,7 @@ seq2seq learning:
  the neurons on the 2nd layer are a function of a 5x5 patch of the input 
  (we would say that the effective receptive field of these neurons is 5x5). 
  If we use dilated convolutions then this effective receptive field would grow much quicker.
+   - My talk explaining dilated convs vs RNN: https://github.com/BartyzalRadek/lets-talk-ml/blob/master/talks/CNN_vs_RNN
  
  - **Pooling:** Pooling layer with filters of size 2x2 applied with a stride of 2 downsamples every depth slice
  in the input by 2 along both width and height, discarding 75% of the activations. 
@@ -163,6 +169,3 @@ seq2seq learning:
    ![7x7 vs 3x3](https://github.com/BartyzalRadek/MLNotes/blob/master/img/7x7_vs_3x3.png)
    ![bottleneck vs 3x3](https://github.com/BartyzalRadek/MLNotes/blob/master/img/bottleneck_vs_3x3.png)
    ![1x3 + 3x1 = 3x3](https://github.com/BartyzalRadek/MLNotes/blob/master/img/1x3-3x1.png)
-
-
-#### Dilated Convolutions
