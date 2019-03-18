@@ -131,8 +131,14 @@ seq2seq learning:
       - O(n^2 * d) - worse in theory but in machine translation: d =~1000, n=~100 => 10x faster than RNN
   - **Encoder**
     - 
-    - Self attention:
+    - Self attention: 
+    - Q, K, V = input embeddings * W_Q, W_K, W_V = Linear layer
+    - Q, K, V can all be identical! 
     - <img src="http://jalammar.github.io/images/t/self-attention-output.png" alt="Self attention" width="300"/>
+    - In matrix form: 
+    - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/transformer_self_attention.png" alt="Attention calculation" width="200"/>
+    - Multi-head attention = do the self attention 8 times -> concat outputs -> multiply by W_O to get output of correct shape = Linear layer
+    - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/transformer_multi_head.png" alt="Attention calculation" width="400"/>
 
 # CNN
 
