@@ -144,13 +144,15 @@ seq2seq learning:
     - Multi-head attention = multiply Q, K, V by Linear layer to make them smaller -> do the self attention 8 times -> concat outputs -> multiply by W_O to get output of correct shape = Linear layer:
     - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/transformer_multi_head.png" alt="Multi-head attention" width="500"/>
   - **Decoder:**
-    - First input is <start> token
-    - Rest of inputs is the translated sentence = labels shifted to the right = teacher forcing
+    - First input is `start` token
+    - Rest of inputs is the translated sentence = labels shifted to the right = `teacher forcing`
     - To prevent model from looking at the labels = Masked Self-Attention = words can look only at previous words during self-attention
     - Inference = generate a new sentence:
-      - Insert <start> token or embedding based on Encoder output
+      - Insert `start` token or embedding based on Encoder output
       - Outputs a prob. distrib. over words 
-      - get most likely word -> 
+      - get most likely word:
+        - greedy inference = select the one with highest prob
+        - beam search = get N words with highest prob and input them to see which ones generate smaller error 
       - Append generated word to input sequence and generate a new word   
 # CNN
 
