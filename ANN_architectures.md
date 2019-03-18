@@ -127,7 +127,8 @@ seq2seq learning:
       - O(n * d^2) - n = input seq length, d = hidden representation dimension
     - Transformer:
       - Encoder calculates word embeddings in constant number of time steps
-      - Decoder outputs one element of output sequence at a time = its sequential? 
+      - Decoder can generate whole sequence in constant number of steps during training
+      - Decoder outputs one element of output sequence at a time during inference = its sequential 
       - O(n^2 * d) - worse in theory but in machine translation: d =~1000, n=~100 => 10x faster than RNN
   - **Whole architecture:**
   - Feed Forward layers at the same level share weights = it just one layer depicted as 2 to show that the comp. can be parallelized there
@@ -142,7 +143,15 @@ seq2seq learning:
     - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/transformer_self_attention.png" alt="Attention calculation" width="350"/>
     - Multi-head attention = multiply Q, K, V by Linear layer to make them smaller -> do the self attention 8 times -> concat outputs -> multiply by W_O to get output of correct shape = Linear layer:
     - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/transformer_multi_head.png" alt="Multi-head attention" width="500"/>
-
+  - **Decoder:**
+    - First input is <start> token
+    - Rest of inputs is the translated sentence = labels shifted to the right = teacher forcing
+    - To prevent model from looking at the labels = Masked Self-Attention = words can look only at previous words during self-attention
+    - Inference = generate a new sentence:
+      - Insert <start> token or embedding based on Encoder output
+      - Outputs a prob. distrib. over words 
+      - get most likely word -> 
+      - Append generated word to input sequence and generate a new word   
 # CNN
 
 **Sources:** 
