@@ -130,6 +130,8 @@ seq2seq learning:
       - Decoder outputs one element of output sequence at a time = its sequential? 
       - O(n^2 * d) - worse in theory but in machine translation: d =~1000, n=~100 => 10x faster than RNN
   - **Whole architecture:**
+  - Feed Forward layers at the same level share weights = it just one layer depicted as 2 to show that the comp. can be parallelized there
+  - Add + Normalize = LayerNorm(layer_output + residual_connection)
   - <img src="http://jalammar.github.io/images/t/transformer_resideual_layer_norm_3.png" alt="Encoder+Decoder" width="700"/>
   - **Encoder:**
     - Self attention: 
