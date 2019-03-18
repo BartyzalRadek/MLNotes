@@ -140,7 +140,7 @@ seq2seq learning:
     - <img src="http://jalammar.github.io/images/t/self-attention-output.png" alt="Self attention" width="400"/>
     - In matrix form: 
     - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/transformer_self_attention.png" alt="Attention calculation" width="350"/>
-    - Multi-head attention = do the self attention 8 times -> concat outputs -> multiply by W_O to get output of correct shape = Linear layer:
+    - Multi-head attention = multiply Q, K, V by Linear layer to make them smaller -> do the self attention 8 times -> concat outputs -> multiply by W_O to get output of correct shape = Linear layer:
     - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/transformer_multi_head.png" alt="Multi-head attention" width="500"/>
 
 # CNN
