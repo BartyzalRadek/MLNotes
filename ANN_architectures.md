@@ -113,7 +113,26 @@ seq2seq learning:
   - [pytorch impl. with a blogpost](https://medium.com/@kolloldas/building-the-mighty-transformer-for-sequence-tagging-in-pytorch-part-ii-c85bf8fd145)
   - [tensor2tensor library with official implementation of Transformer in TF](https://github.com/tensorflow/tensor2tensor/tree/master/tensor2tensor/models)
   - [Illustrated Transformer = source for used imgs](http://jalammar.github.io/illustrated-transformer/)
-  
+  - [Transformer talk by author - source for motivation](https://www.youtube.com/watch?v=rBCqOTEfxvg)
+  - **Motivation:**
+    - RNNs: 
+      - not parallelizable
+      - number of time steps = input sequence length
+      - possibly a lot of words between words relevant to each other
+      - O(n * d^2) - n = input seq length, d = hidden representation dimension 
+    - Dilated Convolutions CNNs: 
+      - parallelizable
+      - log(n) number of time steps with input sequence length n 
+      - still too focused at the position of the words
+      - O(n * d^2) - n = input seq length, d = hidden representation dimension
+    - Transformer:
+      - Encoder calculates word embeddings in constant number of time steps
+      - Decoder outputs one element of output sequence at a time = its sequential? 
+      - O(n^2 * d) - worse in theory but in machine translation: d =~1000, n=~100 => 10x faster than RNN
+  - **Encoder**
+    - 
+    - Self attention:
+    - <img src="http://jalammar.github.io/images/t/self-attention-output.png" alt="Self attention" width="300"/>
 
 # CNN
 
