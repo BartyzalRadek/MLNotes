@@ -43,3 +43,51 @@ class CustomTensorBoardCallback(keras.callbacks.TensorBoard):
         if self.update_freq != 'epoch' and batch % self.update_freq == 0:
             super(CustomTensorBoardCallback, self).on_batch_end(batch, logs)
             # print('Updated TensorBoard on batch ', batch)
+
+
+class CustomModelCheckpointCallback(keras.callbacks.ModelCheckpoint):
+    def __init__(self, restore_best_weights=True, **kw):
+        """
+        Extends ModelCheckpoint Callback with restore_best_weights functionality.
+        :param restore_best_weights: True = restore weight from the best epoch at the end of training.
+
+        ModelCheckpoint params:
+        :param filepath: string, path to save the model file.
+        :param monitor: quantity to monitor.
+        :param verbose: verbosity mode, 0 or 1.
+        :param save_best_only: if `save_best_only=True`,
+            the latest best model according to
+            the quantity monitored will not be overwritten.
+        :param save_weights_only: if True, then only the model's weights will be
+            saved (`model.save_weights(filepath)`), else the full model
+            is saved (`model.save(filepath)`).
+        :param mode: one of {auto, min, max}.
+            If `save_best_only=True`, the decision
+            to overwrite the current save file is made
+            based on either the maximization or the
+            minimization of the monitored quantity. For `val_acc`,
+            this should be `max`, for `val_loss` this should
+            be `min`, etc. In `auto` mode, the direction is
+            automatically inferred from the name of the monitored quantity.
+        :param period: Interval (number of epochs) between checkpoints.
+        """
+        super(CustomModelCheckpointCallback, self).__init__(**kw)
+        self.restore_best_weights = restore_best_weights
+        self.best_epoch = 0
+        self.best_weights = None
+
+    def on_epoch_end(self, epoch, logs=None):
+        super(CustomModelCheckpointCallback, self).on_epoch_end(epoch=epoch, logs=logs)
+        if self.restore_best_weights:
+            current = logs.get(self.monitor)
+            if self.monitor_op(current, self.best):
+                self.best = current
+                self.best_epoch = epoch
+                self.best_weights = self.model.get_weights()
+
+    def on_train_end(self, logs=None):
+        super(CustomModelCheckpointCallback, self).on_train_end(logs)
+        if self.restore_best_weights:
+            logger.info('End of training: Restoring model weights from the epoch {} with {}={}'
+                        .format(self.best_epoch+1, self.monitor, self.best))
+            self.model.set_weights(self.best_weights)
