@@ -1,5 +1,9 @@
 import tensorflow as tf
 import tensorflow.keras as keras
+import logging
+import os
+
+logger = logging.getLogger(__name__)
 
 
 def get_config_proto():
@@ -73,21 +77,32 @@ class CustomModelCheckpointCallback(keras.callbacks.ModelCheckpoint):
         """
         super(CustomModelCheckpointCallback, self).__init__(**kw)
         self.restore_best_weights = restore_best_weights
+        self.best_value = None
         self.best_epoch = 0
         self.best_weights = None
+        self.best_save_path = None
 
     def on_epoch_end(self, epoch, logs=None):
         super(CustomModelCheckpointCallback, self).on_epoch_end(epoch=epoch, logs=logs)
         if self.restore_best_weights:
             current = logs.get(self.monitor)
-            if self.monitor_op(current, self.best):
-                self.best = current
+            if self.best_value is None or self.monitor_op(current, self.best_value):
+                self.best_value = current
                 self.best_epoch = epoch
                 self.best_weights = self.model.get_weights()
+                self.best_save_path = self.filepath.format(epoch=epoch + 1, **logs)
 
     def on_train_end(self, logs=None):
         super(CustomModelCheckpointCallback, self).on_train_end(logs)
         if self.restore_best_weights:
             logger.info('End of training: Restoring model weights from the epoch {} with {}={}'
-                        .format(self.best_epoch+1, self.monitor, self.best))
+                        .format(self.best_epoch + 1, self.monitor, self.best_value))
             self.model.set_weights(self.best_weights)
+
+        if not os.path.exists(self.best_save_path):
+            if self.restore_best_weights:
+                self.model.save_weights(self.best_save_path)
+            else:
+                #TODO save weights
+                logger.warning('The weights from best epoch have not been saved to best_save_path, '
+                               'either use period=1, or restore_weights=True to make sure the weights are saved.')
