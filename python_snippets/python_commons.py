@@ -5,6 +5,7 @@ import sys
 import time
 import json
 import psutil
+import numpy as np
 
 logger = logging.getLogger(__name__)
 
@@ -58,15 +59,25 @@ def load_json(path):
             return json.load(file)
 
 
+class NumpyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        elif isinstance(obj, np.generic):
+            return obj.item()
+        return json.JSONEncoder.default(self, obj)
+
+
 def save_json(data, path):
     """
     Save JSON into a file.
+    Automatically changes Numpy types to Python ones.
     :param data:    The JSON data.
     :param path:    Where to save the JSON data.
     :return:        None.
     """
     with open(path, "w") as file:
-        json.dump(data, file, indent=4, sort_keys=True)
+        json.dump(data, file, indent=4, sort_keys=True, cls=NumpyEncoder)
 
 
 def print_memory_info(indent_level=0):
