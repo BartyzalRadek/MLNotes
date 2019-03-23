@@ -122,21 +122,21 @@ def init_logging(log_dir=None, log_filename=None, level=logging.DEBUG,
 
     handlers = [stream_handler]
 
-    normal_log_filename = None
-    error_log_filename = None
+    normal_log_filepath = None
+    error_log_filepath = None
     if log_filename is not None:
         ensure_dir_exists(log_dir)
         timestamp = get_timestamp_filename()
 
-        normal_log_filename = '{}_NORMAL_{}.log'.format(log_filename, timestamp)
-        normal_file_handler = logging.handlers.RotatingFileHandler(filename=normal_log_filename, mode='a',
+        normal_log_filepath = os.path.join(log_dir, '{}_NORMAL_{}.log'.format(log_filename, timestamp))
+        normal_file_handler = logging.handlers.RotatingFileHandler(filename=normal_log_filepath, mode='a',
                                                                    maxBytes=max_bytes, backupCount=backup_count,
                                                                    encoding='utf8')
         normal_file_handler.setFormatter(formatter)
         normal_file_handler.setLevel(level)
 
-        error_log_filename = '{}_ERROR_{}.log'.format(log_filename, timestamp)
-        error_file_handler = logging.handlers.RotatingFileHandler(filename=error_log_filename, mode='a',
+        error_log_filepath = os.path.join(log_dir, '{}_ERROR_{}.log'.format(log_filename, timestamp))
+        error_file_handler = logging.handlers.RotatingFileHandler(filename=error_log_filepath, mode='a',
                                                                   maxBytes=max_bytes, backupCount=backup_count,
                                                                   encoding='utf8')
         error_file_handler.setFormatter(formatter)
@@ -147,5 +147,5 @@ def init_logging(log_dir=None, log_filename=None, level=logging.DEBUG,
 
     logging.basicConfig(level=level, handlers=handlers)
     if log_filename is not None:
-        logger.info('NORMAL LOG FILE PATH = {}'.format(os.path.join(log_dir, normal_log_filename)))
-        logger.info('ERROR LOG FILE PATH = {}'.format(os.path.join(log_dir, error_log_filename)))
+        logger.info('NORMAL LOG FILE PATH = {}'.format(os.path.join(normal_log_filepath)))
+        logger.info('ERROR LOG FILE PATH = {}'.format(os.path.join(error_log_filepath)))
