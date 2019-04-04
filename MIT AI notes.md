@@ -2,6 +2,31 @@
 https://agi.mit.edu/
 
 
+### Brains, Minds, and Machines (Tomaso Poggio)
+https://www.youtube.com/watch?v=aSyZvBrPAyk
+
+ - humans don't have more genes than fruit flies
+ - fruit flies are hard coded, we are not
+ - guess: we are born with parts of the brain that are plastic and prepared to 
+   learn some specific task very easily but the command from the gene is not 
+   the detailed circuit (that would require many bits) instead its smth like: 
+   imprint things you see in first weeks in life connected to food
+ - brain = parts of modules VS mush of the same thing
+   - different parts have specific functions but the brain is redundant
+   - cortex is from the same hardware but learns different modules
+   
+ - to understand powerpoint you don't need to understand transistors
+  = bad analogy for brain because computer were built that way with different levels
+  of abstraction. Brain is more intertwined - high level function with low level design.
+  
+ - its easire to grow short range connectivity => grow deep networks combining results
+   of these locally connected neurons = solving compositional problems = maybe thats the reson that 
+   the world around us looks compositional - we are wired to see it as compositional
+   
+ - overparametrization = a lot of global optima = a lot of solutions for 
+   models with more unknown aprameters than equations
+
+
 ### Statistical Learning (Vladimir Vapnik)
 https://www.youtube.com/watch?v=STFcvzoxVw4&list=PLrAXtmErZgOdP_8GztsuKi9nrraNbKKp4
 
