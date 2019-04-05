@@ -92,9 +92,26 @@
 ### Group Normalization
  - https://arxiv.org/abs/1803.08494
  - GN divides the channels into groups and computes within each group the mean and variance for normalization
- - combination of layer normalization and instance normalization:
+ - combination of **layer normalization** and **instance normalization**:
    - all the channels in a single group = layer normalization
    - one channel = one separate group = instance norm
  - GN's computation is independent of batch sizes
  - can be naturally transferred from pre-training to fine-tuning
- - can outperform BN in object detection and segmentation in COCO, video classification   
+ - can outperform BN in object detection and segmentation in COCO, video classification
+ - LayerNorm treats all channels with same weight = group norm allows for flexibility
+ - but image channels are also correlated = thats why grouping works better than instance norm
+ 
+### Batch Renormalization
+ - https://arxiv.org/abs/1702.03275
+ - use moving average of mean/std over batches
+ 
+### Batch-Instance Normalization
+ - [Batch-Instance Normalization for Adaptively Style-Invariant Neural Networks](https://arxiv.org/abs/1805.07925) 
+ - interpolation between batch normalization and instance normalization - the balancing param is learned by SGD
+ - instance normalization completely erases style information = for some tasks we want to keep some style information
+ 
+### Switchable Normalization
+ - [Differentiable Learning-to-Normalize via Switchable Normalization](https://arxiv.org/abs/1806.10779)
+ - weighted average of different mean and var statistics from Batch Norm, Layer Norm, Instance Norm
+ - the weights of the normalizers are trained
+ - select different normalizers for different layers
