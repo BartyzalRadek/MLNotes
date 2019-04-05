@@ -116,3 +116,10 @@
  - weighted average of different mean and var statistics from Batch Norm, Layer Norm, Instance Norm
  - the weights of the normalizers are trained
  - select different normalizers for different layers
+ 
+### Spectral Normalization
+ - [Spectral Normalization for Generative Adversarial Networks](https://arxiv.org/abs/1802.05957)
+ - stabilize the training of the discriminator
+ - limiting the Lipschitz constant of the discriminator
+   - Lipschitz constant L = L for a function f where for any x and y: `|| f(x) - f(y) || <= L || x - y ||`
+ - restrict the Lipschitz constant by normalizing the weight matrices by their largest eigenvalue (or their spectral norm – hence the name) 
