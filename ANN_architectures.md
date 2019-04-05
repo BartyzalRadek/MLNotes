@@ -216,7 +216,7 @@ seq2seq learning:
  - concat previous layer outputs to each subsequent layer = +k channels at each layer
  - <img src="https://cdn-images-1.medium.com/max/1000/1*9ysRPSExk0KvXR0AhNnlAA.gif" alt="DenseNet" width="400"/>
  - less params than CNN Resnet:
- - <img src="https://cdn-images-1.medium.com/max/1000/1*03pZkWqHN7A3pd81Pi-cIQ.png" alt="Resnet vs DenseNet params" width="400"/>
+ - <img src="https://cdn-images-1.medium.com/max/1000/1*03pZkWqHN7A3pd81Pi-cIQ.png" alt="Resnet vs DenseNet params" width="600"/>
  - after each block of L layers: 
    - reduce number of channels to k = use 1x1 conv with k filters
    - reduce filter size by pooling
