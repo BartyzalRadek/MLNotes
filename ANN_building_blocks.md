@@ -33,6 +33,7 @@
 
 ## Normalization
  - overview: http://mlexplained.com/2018/11/30/an-overview-of-normalization-methods-in-deep-learning/
+ - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/norm_methods.png" width="800"/>
 
 ### BatchNorm
  - 
@@ -93,7 +94,7 @@
  - GN divides the channels into groups and computes within each group the mean and variance for normalization
  - combination of layer normalization and instance normalization:
    - all the channels in a single group = layer normalization
-   - one channel = one group = instance norm
+   - one channel = one separate group = instance norm
  - GN's computation is independent of batch sizes
  - can be naturally transferred from pre-training to fine-tuning
  - can outperform BN in object detection and segmentation in COCO, video classification   
