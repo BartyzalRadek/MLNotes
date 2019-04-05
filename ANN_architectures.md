@@ -208,3 +208,16 @@ seq2seq learning:
    ![7x7 vs 3x3](https://github.com/BartyzalRadek/MLNotes/blob/master/img/7x7_vs_3x3.png)
    ![bottleneck vs 3x3](https://github.com/BartyzalRadek/MLNotes/blob/master/img/bottleneck_vs_3x3.png)
    ![1x3 + 3x1 = 3x3](https://github.com/BartyzalRadek/MLNotes/blob/master/img/1x3-3x1.png)
+
+### DenseNet
+ - [Densely Connected Convolutional Networks](https://arxiv.org/abs/1608.06993)
+ - [img source](https://towardsdatascience.com/review-densenet-image-classification-b6631a8ef803)
+ - layer output = BatchNorm -> ReLU -> 3x3 conv with k filters => k channels => HxWxk
+ - concat previous layer outputs to each subsequent layer = +k channels at each layer
+ - <img src="https://cdn-images-1.medium.com/max/1000/1*9ysRPSExk0KvXR0AhNnlAA.gif" alt="DenseNet" width="400"/>
+ - less params than CNN Resnet:
+ - <img src="https://cdn-images-1.medium.com/max/1000/1*03pZkWqHN7A3pd81Pi-cIQ.png" alt="Resnet vs DenseNet params" width="400"/>
+ - after each block of L layers: 
+   - reduce number of channels to k = use 1x1 conv with k filters
+   - reduce filter size by pooling
+ - <img src="https://cdn-images-1.medium.com/max/1000/1*BJM5Ht9D5HcP5CFpu8bn7g.png" alt="DenseNet overview" width="400"/> 
