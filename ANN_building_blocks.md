@@ -58,6 +58,7 @@
    - small batches = a lot of noise
    - not suitable for RNN - we would have to store the statistics for each time step = for unrolled network
    - fine-tuning pre-trained net with frozen BN layer = do not update the BN mean/var with new mini-batch statistics if using small dataset to fine tune. See [J. Howard comment](https://forums.fast.ai/t/freezing-batch-norm/8377/5)
+   - optimizations is dependent on batch size = in distributed training the batch size must be same for all machines
 
 ### WeightNorm
  - https://arxiv.org/abs/1602.07868
