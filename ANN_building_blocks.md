@@ -27,6 +27,10 @@
  - both sigmoid and tanh represent a FF layer: sigmoid(Wx + b)
  - no weight sharing
 
+### Weight channels with extra params = SE Net
+ - [Squeeze-and-Excitation Networks](https://arxiv.org/abs/1709.01507v3)
+
+
 ### Convolve
  - 
 
