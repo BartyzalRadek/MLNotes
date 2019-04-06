@@ -39,6 +39,8 @@
  - 
  - [Coursera Andrew Ng](https://www.coursera.org/lecture/deep-neural-network/why-does-batch-norm-work-81oTm)
  - [How Does Batch Normalization Help Optimization?](https://arxiv.org/abs/1805.11604)
+ - [Explanation of how normalization of inputs makes hessian better conditioned](http://mlexplained.com/2018/01/10/an-intuitive-explanation-of-why-batch-normalization-really-works-normalization-in-deep-learning-part-1/)
+ - [Exaplanation of Hessian](http://mlexplained.com/2018/02/02/an-introduction-to-second-order-optimization-for-deep-learning-practitioners-basic-math-for-deep-learning-part-1/)
  - for each feature: 
    - calculate mean and variance over the mini-batch
    - normalize each feature to mean=0, var=1
@@ -53,6 +55,15 @@
    -  = changing one weight can make the activations fly all over the place in complex ways
    - With BN, we can control the magnitude and mean of the activations **independently** of all other layers
    - BN makes the loss surface easier to optimize, smoother = we can use higher LR
+     - Hessian is better conditioned if we normalize the inputs: 
+       - eigen vectors = directions of change
+       - eigen values = how large is the curvature
+       - larger eigen value = larger curvature = need smaller step size = max limit on my learning rate if its same for all dimensions
+       - small eigen value = small curvature = slow convergence = could use bigger step size
+       - difference in largest - smallest eigen val = **conditioning** of matrix
+       - **ill-conditioned** = large difference in largest and smallest = have to use small step size not to diverge in the directions of eigen vectors with large eigen vals 
+         which leads to slow convergence in directions of eigenvectors with small eigen vals = solved by adaptive learning rate for each direction = ADAM = use momentum
+       
  - pitfalls:
    - different computation at train and test time
    - small batches = a lot of noise
