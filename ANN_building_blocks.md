@@ -36,9 +36,8 @@
  - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/norm_methods.png" width="800"/>
 
 ### BatchNorm
- - 
- - [Coursera Andrew Ng](https://www.coursera.org/lecture/deep-neural-network/why-does-batch-norm-work-81oTm)
  - [How Does Batch Normalization Help Optimization?](https://arxiv.org/abs/1805.11604)
+ - [Coursera Andrew Ng](https://www.coursera.org/lecture/deep-neural-network/why-does-batch-norm-work-81oTm)
  - [Explanation of how normalization of inputs makes hessian better conditioned](http://mlexplained.com/2018/01/10/an-intuitive-explanation-of-why-batch-normalization-really-works-normalization-in-deep-learning-part-1/)
  - [Exaplanation of Hessian](http://mlexplained.com/2018/02/02/an-introduction-to-second-order-optimization-for-deep-learning-practitioners-basic-math-for-deep-learning-part-1/)
  - for each feature: 
