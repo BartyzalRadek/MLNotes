@@ -29,7 +29,8 @@
 
 ### Weight channels with extra params = SE Net
  - [Squeeze-and-Excitation Networks](https://arxiv.org/abs/1709.01507v3)
-
+ - HxWxC input -> Global Average Pooling -> 1x1xC -> ReLU -> Sigmoid = weights of channels -> multiply input channels by them
+ - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/se_net.png" width="400"/>
 
 ### Convolve
  - 
