@@ -21,6 +21,24 @@ Code examples:
  - [Minimal char-rnn in Keras](https://github.com/fchollet/keras/blob/master/examples/lstm_text_generation.py)
  - [Minimal char-rnn in Keras by me with more comments :)](https://github.com/BartyzalRadek/neuroinformatics-course/blob/master/LSTM.ipynb)
  
+## Cell agnostic RNN variants
+
+### Dilated RNN
+ - https://arxiv.org/abs/1710.02224
+ - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/dilated_rnn.png" width="800"/>
+ - difference to regular skip connection:
+   - skip connection layer = `f(x_t, c_{t-1}, c_{t-d})` - the previous output is combined with the skip connection
+   - dilated layer = `f(x_t, c_{t-d})` - the previous output is not inputted
+ 
+### Residual RNN
+ - https://arxiv.org/abs/1701.03360
+ - use highway skip connection on hidden state
+ - or use skip connection on cell state
+ - or residual RNN:
+   - skip connection of h_{t-1} to cell state before hidden output
+   - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/residual_rnn.png" width="600"/>
+   
+ 
 ## LSTM 
 
 **Sources:**
