@@ -42,7 +42,7 @@
 ### Spatial Dropout
  - zeroes out whole channels = feature maps
  - each channel has prob p to be zeroed out
- - 1D example: seq len=4, num channels=3:
+ - 1D example: seq len=4, num channels=3, [source](https://stats.stackexchange.com/questions/282282/how-is-spatial-dropout-in-2d-implemented):
  - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/spatial_dropout.png" width="600"/>
 
 ## Normalization
