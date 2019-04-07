@@ -6,7 +6,9 @@
  - https://arxiv.org/abs/1512.03385
  - `y = f(x) + x`
  - add the inputs
- - residual conection = skip connection
+ -  = residual conection
+ - **skip connection** = add result of a distant past layer
+ - **parametrized skip connection** = `y = f(y_prev_1 + y_prev_2 + ...)` = add past outputs and then run them through a layer with activation
  - learn only what to add not the whole transformation
  - subsequent layers are dependent on each other
  
