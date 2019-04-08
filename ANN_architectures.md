@@ -181,16 +181,27 @@ seq2seq learning:
  - outputs contextual word embeddings - these can be used in further tasks
  - no finetuning necessary just append task specific architecture on top of pretrained ELMo and train only the added part
  - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/ELMo.png" width="600"/>
+
+### OpenAI GPT = Generative Pre-trained Transformer
+ - https://openai.com/blog/language-unsupervised/
+ - GPT2 - https://openai.com/blog/better-language-models/
+ - just Transformer decoder 
+ - unsupervisely trained on predicting next word of sequence
+ - decoder already masks the next words = can't look at them during attention
+   - left-to-right language model = looks only at past words
+ - all words are predicted = gradient flows through all "vertical paths" = token embeddings
    
 ### BERT = Bidirectional Encoder Representations from Transformers 
  - Pre-trained models + src = https://github.com/google-research/bert  
  - [BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/abs/1810.04805) 
- - bi-directional transformer encoder
- - jointly conditioning on both left and right context in all layers = not just concat like ELMo
+ - transformer encoder = they call it bi-directional, it's all-directional = attention
+ - jointly conditioning on both left and right context in all layers = normal transformer encoder:
+   - not just concat like ELMo
+   - not left-to-right like Open AI GPT = Transformer decoder trained to rpedict next word in sequence
  - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/bert.png" width="600"/>
  - pre-trained on: 
-   - predicting any masked words = not just the next word after ipnut sequence like ELMo
-   - predict whether 2 sentec follow each other
+   - predicting masked words = 15% of input sequence = not just the next word like ELMo/GPT
+   - predict whether 2 senteces follow each other
    - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/bert_pretrain2.png" width="500"/>
  - input:
    - input token = token + segment embedding + positional embedding
