@@ -171,7 +171,34 @@ seq2seq learning:
       - get most likely word:
         - greedy inference = select the one with highest prob
         - beam search = get N words with highest prob and input them to see which ones generate smaller error 
-      - Append generated word to input sequence and generate a new word   
+      - Append generated word to input sequence and generate a new word
+      
+### ELMo = Embeddings from Language Models
+ - [Deep contextualized word representations](https://arxiv.org/abs/1802.05365)
+ - https://jalammar.github.io/illustrated-bert/
+ - uses bi-directional LSTM - concats their hidden repr.
+ - pretrained on large unsupervised text corpora - predict the next word = dense + softmax layer on top of last LSTM layer output
+ - outputs contextual word embeddings - these can be used in further tasks
+ - no finetuning necessary just append task specific architecture on top of pretrained ELMo and train only the added part
+ - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/ELMo.png" width="600"/>
+   
+### BERT = Bidirectional Encoder Representations from Transformers 
+ - Pre-trained models + src = https://github.com/google-research/bert  
+ - [BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/abs/1810.04805) 
+ - bi-directional transformer encoder
+ - jointly conditioning on both left and right context in all layers = not just concat like ELMo
+ - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/bert.png" width="400"/>
+ - pre-trained on: 
+   - predicting any masked words = not just the next word after ipnut sequence like ELMo
+   - predict whether 2 sentec follow each other
+   - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/bert_pretrain2.png" width="400"/>
+ - input:
+   - input token = token + segment embedding + positional embedding
+   - use WordPiece embeddings
+   - learned positional embeddings with supported sequence lengths up to 512 tokens
+   - first token is always [CLS] = output of encoder on this token is input sequence embedding inputted to classification layers
+ 
+   
 # CNN
 
 **Sources:** 
