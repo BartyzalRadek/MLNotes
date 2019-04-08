@@ -187,11 +187,11 @@ seq2seq learning:
  - [BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/abs/1810.04805) 
  - bi-directional transformer encoder
  - jointly conditioning on both left and right context in all layers = not just concat like ELMo
- - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/bert.png" width="400"/>
+ - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/bert.png" width="600"/>
  - pre-trained on: 
    - predicting any masked words = not just the next word after ipnut sequence like ELMo
    - predict whether 2 sentec follow each other
-   - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/bert_pretrain2.png" width="400"/>
+   - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/bert_pretrain2.png" width="500"/>
  - input:
    - input token = token + segment embedding + positional embedding
    - use WordPiece embeddings
