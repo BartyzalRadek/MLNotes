@@ -150,6 +150,8 @@ seq2seq learning:
       - O(n^2 * d) - worse in theory but in machine translation: d =~1000, n=~100 => 10x faster than RNN
   - **Whole architecture:**
   - Feed Forward layers at the same level share weights = it just one layer depicted as 2 to show that the comp. can be parallelized there
+  - FF layer = two linear transformations with ReLU in between = `ReLU(W_1*x + b_1) * W_2*x + b_2`
+    - dim(W_1) = 2048, dim(W_2) = 512 = token dim
   - Add + Normalize = LayerNorm(layer_output + residual_connection)
   - <img src="http://jalammar.github.io/images/t/transformer_resideual_layer_norm_3.png" alt="Encoder+Decoder" width="700"/>
   - **Encoder:**
@@ -197,11 +199,13 @@ seq2seq learning:
  - transformer encoder = they call it bi-directional, it's all-directional = attention
  - jointly conditioning on both left and right context in all layers = normal transformer encoder:
    - not just concat like ELMo
-   - not left-to-right like Open AI GPT = Transformer decoder trained to rpedict next word in sequence
+   - not left-to-right like Open AI GPT = Transformer decoder trained to predict next word in sequence
  - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/bert.png" width="600"/>
  - pre-trained on: 
    - predicting masked words = 15% of input sequence = not just the next word like ELMo/GPT
-   - predict whether 2 senteces follow each other
+   - only 15% of words have error = gradient, unlike GPT where all words have error
+   - slower training but the benefit of looking at whole input sequence = overcomes GPT in couple epochs
+   - predict whether 2 sentences follow each other
    - <img src="https://github.com/BartyzalRadek/MLNotes/blob/master/img/bert_pretrain2.png" width="500"/>
  - input:
    - input token = token + segment embedding + positional embedding

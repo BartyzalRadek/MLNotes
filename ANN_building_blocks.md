@@ -4,7 +4,7 @@
 
 ### Add = ResNet
  - https://arxiv.org/abs/1512.03385
- - `y = f(x) + x`
+ - `y = activation(f(x) + x)`
  - add the inputs
  -  = residual conection
  - **skip connection** = add result of a distant past layer
