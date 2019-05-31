@@ -163,3 +163,17 @@ https://www.youtube.com/watch?v=3FIo6evmweo&list=PLrAXtmErZgOdP_8GztsuKi9nrraNbK
  - near term: easy to say which jobs are going to disappear but hard to say which are going to be invented
  - new jobs are constantly created
  - countries with high level of automation have very low unemployment rates
+
+
+### Eric Weinstein: Revolutionary Ideas in Science, Math, and Society
+
+ - theoretical physicist = source of the whole economy: biology, chemistry, peace through the invention of nuclear weapons, Web
+
+ - social networks: 
+  - how much of disagreeable things do you want to see? See only things that I disagree with but are actualy true.
+    See the reason why I should see them.
+
+ - social control
+   - why cannot we physically disable cameras, microphones on devices, why is the camera indicator light sw controlled
+   - 2D: emergence VS intention - profit is only a part of the intentions, political/social control, 
+     changing the discussion about things that are not benefitial to the platform = what are they bending to in "Pakistan", etc..
