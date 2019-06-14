@@ -177,3 +177,52 @@ https://www.youtube.com/watch?v=3FIo6evmweo&list=PLrAXtmErZgOdP_8GztsuKi9nrraNbK
    - why cannot we physically disable cameras, microphones on devices, why is the camera indicator light sw controlled
    - 2D: emergence VS intention - profit is only a part of the intentions, political/social control, 
      changing the discussion about things that are not benefitial to the platform = what are they bending to in "Pakistan", etc..
+     
+### Autonomous Weapons Systems Policy (Richard Moyes)
+
+https://www.youtube.com/watch?v=U6lJI-NSfBY
+
+ - Landmine = static autonomous weapon, input from outside world = pressure on plate -> function of input -> explosion
+ - International Law:
+   - International Human Rights Law = right to live, dignity
+   - International Humanitarian Law = rules of behavior during the war = do not kill too many civilians
+   - Treaties of specific weapons
+   - these are negotiated by countries
+   - requires social function from all states = no world police
+ - AW discussed in UN:
+   - how the targets are selected
+   - what is a target, when and where is force applied to a target
+   
+ - Advantages of autonomy:
+   - speed of decision making
+   - speed in coordination of large numbers in swarms
+   - reach = not rely on communication infrastructure
+   
+ - Disandvatages:
+   - moral
+   - legal arguments: machine doing legal decision - law is addressed to humans not machines
+     treat AW as machines or agents?
+   - easier to go to war, arms races, etc.
+   
+ - What is the human element that we want to preserve?
+   - "human control"
+   - nobody wants AW without any human control = rogue drones etc.
+   - OTH person clicks to shoot when there is a red light with no idea what is happening = not enough control
+ 
+ - Requirements = Context to talk about AW:
+   - predictive, reliable, transparent
+   - accurate information:
+     - outcome we want to achieve = what is a target, what weapon to use
+     - how does the technology works
+     - context = are there civilians, other objects similar to targets, urban area
+   - timely human intervention = able to turn it off
+   - accountability
+   
+ - Example with missiles over an area:
+   - tanks in an area the commander cannot see - fires missiles into the area, 
+     the missiles locate the tanks (heat signatures) and destroy them
+   - if the area is small we have context = its a desert, city etc.
+   - if the area is large = e.g. whole country and we just send missiles to destroy the "tanks" in the area, 
+     the **context** of applied force is unknown to the commander = problem
+ - How to encode the classification of humans as targets vs non-targets
+   
