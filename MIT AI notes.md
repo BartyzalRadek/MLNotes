@@ -225,4 +225,59 @@ https://www.youtube.com/watch?v=U6lJI-NSfBY
    - if the area is large = e.g. whole country and we just send missiles to destroy the "tanks" in the area, 
      the **context** of applied force is unknown to the commander = problem
  - How to encode the classification of humans as targets vs non-targets
+ 
+### Jeff Hawkins: Thousand Brains Theory of Intelligence
+
+https://www.youtube.com/watch?v=-EVqrDlAqYo
+
+ - neocortex has similar structure everywhere, in all mammals
+ - Hierarchical Temporal Memory (HTM) theory of intelligence = On Intelligence
+   - temporal:
+     - brain processes information through time
+     - not instant like CNN
+   - memory:
+     - we build a model of the world
+   - hierarchical
+     - hierarchy of neurons
+   - not wrong but too simple for the current knowledge
+   
+ - neocortex is big evolutionary jump
+   - initially it had straightforward positive impact on survivability
+   - from single purpose neural HW = heartbeat ...
+   - to general purpose neural HW = understanding abstract concepts
+   
+ - Thousand Brain Theory = all ideas, everything we know is stored in reference frames
+   - we know that brains predict what will happen
+     - what does it need for it?
+     - everything is stored in reference frames - location of finger in reference to a cup
+   - everything is in reference frames
+   - consequences:
+     - every  tiny square of neocortex can learn a complete model of an object
+     - all columns are building a model of something
+       - visual models of a cup, sensual model, auditorial model
+       - all of them are coming together
+     - sensory fusion problem - when does it all come together?
+       - all models of a cup (thousands of them) are voting 
+       - guessing what are we touching/sensing
+       - each model produces its probability of a what they think is the object we are touching
+       - associative memory mechanism - they all vote for the single best answer
+       - the layer that does the voting converges on one answer - it thinks its a cup
+   - memory palace = mentally moving through the reference frames = walk through the house
+     - brain uses grid cells for everything = reference frames even when we think about concepts
+     - thinking about concepts = moving in reference frames
+     - solving problems = finding a path through a reference frames
+   - reference frame
+     - x,y,z cartesian coords = reference frame
+     - you have a point in space, given a movement, you can say what will the next point be
+       - its spatial = how can we move from one point to other
+       - grid cells can implement N dims space
+   - attention
+     - attend to room -> table -> cup -> logo -> letter -> pop back up room reference
+ - neurons
+   - thousands of synapses
+   - time based prediction engines
+   - "Neurons have thousands of synapses" paper
+   - forming new synapses to detect a presence a tens of activated synapses at the same time = some prediction
+   -  
+   
    
