@@ -280,4 +280,62 @@ https://www.youtube.com/watch?v=-EVqrDlAqYo
    - forming new synapses to detect a presence a tens of activated synapses at the same time = some prediction
    -  
    
+### Harry Cliff: Particle Physics and the Large Hadron Collider
+
+https://www.youtube.com/watch?v=8A-5gIW0-eI
+
+ - LHC
+   - large microscope
    
+ - particles = ripples in a quantum field, the fields are everywhere, like electr-magnetic fields
+   - atom consists of 3 types of particles:
+     - electrons = ripple in a an electron field
+     - up-quarks = ripple in a an up-quark field
+     - down-quarks = ripple in a down-quark field   
+ - how to discover new particle = create a ripple in a new field = the important thing is the existence of the field
+   - Higgs field = everywhere like other field, but to confirm it - create a ripple in it to create an observable particle
+   - creating a ripple in this field required a lot of energy
+ - particle accelerators:
+   - circular 
+     - particles go fast = to make them go round you need strong magnets to curve them around the bend
+       - LHC used the strongest magnets known
+   - linear
+   
+ - 1 beam consists of cca 40 bunches = 30cm long and couple microns thick
+   - 2 of them cross in front of a detector
+   
+ - protons, neutrons etc. consist of quarks
+ - strong force holds quarks together is too strong to knock them out
+   - if we try to pull 2 quarks apart, we keep adding energy till the strong force snaps 
+     and the energy released creates 2 new quarks = we get 4 quarks
+
+ - photon is a ripple in a electro-magnetic field
+ - strong force holds quarks together
+   - gluons are the particles of strong force = strong force field = gluon field
+   
+ - the field is warped by the charge of the particles (ripples) which causes the force
+ 
+ - weak force - bosons are particles - 70x mass of protons
+   - manifests only at short distances, why?
+     - the particle of the field has a very large mass = the force dies of very quickly (spatially)
+
+ - quantum field theory was not compatible with particles having large mass
+  - solution = they have no mass by themselves, they get it by another process
+  - = new quantum field = Higgs field, particles get mass through interaction with it
+  - what we observe as mass of the particle = Higgs field is drawn to a particle = the energy of the Higgs field packed around the particle = mass
+  - if we "turn off" Higgs field => all particles would be massless and fly around with speed of light
+  
+ - electro-magnetic force + weak force = manifestation of 1 underlining force
+ 
+ - Higgs field is fundamentally different from all other fields:
+   - other field are 0 in empty space, except for quantum fluctuations
+   - Higgs field is has a non-zero default value everywhere = energy stored everywhere in the universe
+   - this energy is what gives mass to the particles
+   - the level of energy has to be very precise:
+     - 2 likely scenarios for the level of energy =:
+       - 0 everywhere = all particles massless = cannot form atoms = no stuff
+       - or it explodes to extreme values that even electron would be so massive it would collapse into a blackhole = universe made of blackholes
+     - you need an exact setup for life to exist
+     - possible explanation except God and infinite multiverses:
+      - supersymmetry = all fields have symmetric super- filds that cancel each other out and tune the Higgs field to the needed value
+       - but tough luck - we should have found the super-fields by LHC but none were found so ... 
