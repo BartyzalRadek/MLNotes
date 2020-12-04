@@ -1,7 +1,6 @@
 ## Notes on a Udemy course
 https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide
 
-
 ## Install docker
 
 ## Docker image
@@ -73,13 +72,19 @@ Either:
    - map their ports to outside = local machine
 
 ```
+version: '3'
 services:
   my-redis-server:
     image: 'redis'   = just use image called redis
   my-node-app:
-    build: .         = build image in local dir
+    build: 
+      context: .         = build image in local dir
+      dockerfile: Dockerfile.dev   = specify if diff name than Dockerfile
     ports:
       - "4001:8081"  = local machine port:in_container port 
+    volumes:
+      - /app/node_modules  = do not map /app/node_modules
+      - .:/app       = pwd -> /app in container
 ```
 
  - instead of host URL use: `my-redis-server` to get into the redis container 
@@ -98,3 +103,54 @@ services:
    - always
    - on-failure = checks exit code
    - unless-stopped = unless we manually stop it from CLI
+
+## Development + Deployment flow
+ - github repo
+ - MR
+ - Travis CI runs tests and merges to master runs tests again and pushes to AWS
+ - AWS instance
+
+### Docker images
+Different for dev and prod =>
+ - `Dockerfile.dev` = used for dev = e.g. start dev Flask server isntead of running Gunicorn
+   - `docker buils -f Dockerfile.dev .`
+ - `Dockerfile` = used for production
+
+### Docker volumes
+ - propagate changes in source code files into the container without rebuilding the container
+ - do not COPY files but create references in the container pointing to the files outside the container
+ - `docker run -v /app/node_modules -v $(pwd):/app <image>` 
+   - `-v $(pwd):/app` will map pwd to `/app` inside the container
+   - `-v /app/node_modules` will say: do not touch `/app/node_modules` inside the container = do not map it
+   - without last command the `/app/node_modules` inside comtainer would be mapped to an empty space because we don't have that folder in current working dir (we installed the node_modules to another dir)
+   - => do not map folders where the container installs stuff
+
+### Running tests and interacting with them
+ - add tests service to docker compose, that will have the volumes mounted but changed the starting command
+ - docker attach always attaches to the primary process of a container = with pid=1
+   - if the primary process starts a secondary process we cannot attach to it = cannot pass input to it
+
+ - or run tests in the main container using `docker exec -it run tests`
+
+### Multi-step Docker builds
+ - Build phase:
+   - uses node:alpine 
+   - istall node dependencies
+   - run npm run build = outputs build directory with static files
+ - Run phase:
+   - uses nginx image
+   - copy over results of the build phase
+   - start nginx
+
+```
+FROM node:alpine
+WORKDIR '/app'
+COPY package.json .
+RUN npm install
+COPY . .
+RUN npm run build
+
+FROM nginx
+COPY --from=0 /app/build /usr/share/nginx/html            = from=0 = from phase 0
+```
+
