@@ -154,3 +154,48 @@ FROM nginx
 COPY --from=0 /app/build /usr/share/nginx/html            = from=0 = from phase 0
 ```
 
+### Travis CI
+ - amytime we push to github, travis will pull the code and do some work = testing, deploying
+ - `.travis.yaml` in project root:
+   - sudo: required = needed for docker
+   - install docker:
+     - services:
+       - docker
+   - build our image from Dockerfile.dev
+     - before_install:
+       - docker build -t travis-test-image -f Dockerfile.dev .
+   - run the test suite, travis expects that every command runs and exits with return code 0, if not it failed
+     - script:
+       - docker run travis-test-image <run_tests>
+   - if tests pass, deploy to AWS Elastic Beanstalk
+     - deploy:
+       - fill in info about elastic beanstalk
+       - on:
+         - branch: master
+     - access keys to aws = create a new AMI user with Beanstalk full access right
+
+ - add environment variables to our project in Travis
+   - acessKey, secretKey for AWS - display value in log = FALSE
+
+### AWS Elastic Beanstalk
+ - sets up: 
+   - Load Balancer 
+   - S3 bucket
+   - and a VM running our docker container
+ - automatically scales up = starts new VM running our docker image
+
+ - automatically maps ports to outside that are specified by: `EXPOSE: 80` in the dockerfile
+   - this is specific feature of the AWS Elastic Beanstalk
+   - the Dockerfile then looks like this:
+```
+FROM node:alpine
+WORKDIR '/app'
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+FROM nginx
+EXPOSE 80
+COPY --from=0 /app/build /usr/share/nginx/html
+```
