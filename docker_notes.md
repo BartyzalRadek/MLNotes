@@ -203,7 +203,8 @@ COPY --from=0 /app/build /usr/share/nginx/html
 ### Multi-container application
  - create sub-folders in the project root for your components: e.g.: client, server
  - in project root: create `docker-compose.yaml`:
-   - ```
+
+```
 	version: '3'
 	services:
 	  postgres:
@@ -252,7 +253,7 @@ COPY --from=0 /app/build /usr/share/nginx/html
 	    environment:
 	      - REDIS_HOST=redis
 	      - REDIS_PORT=6379
-     ```
+```
 
  - `api` is a Express server  = like Flask app that accepts cals to routes `/values/all`, `/values`
  - `client` is an Node JS app that contains the HTML and JS that submits requests on button click
@@ -264,8 +265,9 @@ COPY --from=0 /app/build /usr/share/nginx/html
 
 #### NGINX setup
  - NGINX watches to requests from outside
- - `default.conf` = configuration file on NGINX
-   - ```
+ - `default.conf` = configuration file on NGINX:
+
+```
      upstream client {
 	server client:3000;     = tell NGINX that there is a server at Host=client, port=3000
      }
@@ -293,6 +295,6 @@ COPY --from=0 /app/build /usr/share/nginx/html
 	  proxy_pass http://api;        = pass requests to api
 	}
      }
-     ```
+```
 
 
