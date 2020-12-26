@@ -199,3 +199,100 @@ FROM nginx
 EXPOSE 80
 COPY --from=0 /app/build /usr/share/nginx/html
 ```
+
+### Multi-container application
+ - create sub-folders in the project root for your components: e.g.: client, server
+ - in project root: create `docker-compose.yaml`:
+   - ```
+	version: '3'
+	services:
+	  postgres:
+	    image: 'postgres:latest'
+	    environment:
+	      - POSTGRES_PASSWORD=postgres_password
+	  redis:
+	    image: 'redis:latest'
+	  nginx:
+	    restart: always                = automatically reboot
+	    build: 
+	      dockerfile: Dockerfile.dev   = only says FROM nginx, COPY default.conf
+	      context: ./nginx
+	    ports:
+	      - '3050:80'                  = local 3050 -> 80 inside container
+	  api:
+	    build:
+	      dockerfile: Dockerfile.dev   = ./server/Dockerfile.dev
+	      context: ./server            = build the container in this folder = use its files
+	    volumes:
+	      - /app/node_modules          = don't try to override this folder = leave it as it is
+	      - ./server:/app              = if we make any change in /server it will be reflected in /app inside the container
+	    environment:
+	      - REDIS_HOST=redis           = set inside container at run time = it's not baked in the container
+	      - REDIS_PORT=6379
+	      - PGUSER=postgres
+	      - PGHOST=postgres
+	      - PGDATABASE=postgres
+	      - PGPASSWORD=postgres_password
+	      - PGPORT                     = this will take value of the env var from local `env`
+	  client:
+	    stdin_open: true
+	    build:
+	      dockerfile: Dockerfile.dev
+	      context: ./client
+	    volumes:
+	      - /app/node_modules
+	      - ./client:/app
+	  worker:
+	    build:
+	      dockerfile: Dockerfile.dev
+	      context: ./worker
+	    volumes:
+	      - /app/node_modules
+	      - ./worker:/app
+	    environment:
+	      - REDIS_HOST=redis
+	      - REDIS_PORT=6379
+     ```
+
+ - `api` is a Express server  = like Flask app that accepts cals to routes `/values/all`, `/values`
+ - `client` is an Node JS app that contains the HTML and JS that submits requests on button click
+   - the requests are submitted by calling `/api/values/all`, `/api/values`
+   - its not calling the server directly so it does not have to know on which port is the server running
+   - it's calling NGINX that will check that the requested route:
+     - starts with `/` -> go to client that will return static files
+     - starts with `/api` -> call server with route without the `/api` part of the route
+
+#### NGINX setup
+ - NGINX watches to requests from outside
+ - `default.conf` = configuration file on NGINX
+   - ```
+     upstream client {
+	server client:3000;     = tell NGINX that there is a server at Host=client, port=3000
+     }
+
+     upstream server {
+	server api:5000;        = Host=api = the name we gave to the service in docker compose
+     }
+
+     location /sockjs-node {    = route websocket through to the client - not necessary
+	    proxy_pass http://client;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "Upgrade";
+     }
+
+     server {
+	listen 80;              = listen on port 80 inside the container
+
+        location / {
+	  proxy_pass http://client;   = pass requests starting with / to client
+	}
+
+        location /api {
+	  rewrite /api/(.*) /$1 break;  = cut off /api
+	  proxy_pass http://api;        = pass requests to api
+	}
+     }
+     ```
+
+
