@@ -168,6 +168,7 @@ COPY --from=0 /app/build /usr/share/nginx/html            = from=0 = from phase 
      - script:
        - docker run travis-test-image <run_tests>
    - if tests pass, deploy to AWS Elastic Beanstalk
+     - this time we let the BeanStalk biuld our image for us, but we could also build the prod images by Travis and push them to DockerHub, BeanStalk would then just download them
      - deploy:
        - fill in info about elastic beanstalk
        - on:
