@@ -264,6 +264,10 @@ COPY --from=0 /app/build /usr/share/nginx/html
      - starts with `/` -> go to client that will return static files
      - starts with `/api` -> call server with route without the `/api` part of the route
 
+#### Travis CI
+ - build the dev containers and runs tests on them
+ - build prod containers and puhs them to DockerHub
+
 #### NGINX setup
  - NGINX watches to requests from outside
  - `default.conf` = configuration file on NGINX:
@@ -297,5 +301,13 @@ COPY --from=0 /app/build /usr/share/nginx/html
 	}
      }
 ```
+
+#### Elastic Beanstalk
+ - beanstalk does not know how to run multi-containers = needs: `Dockerrun.aws.json`
+ - it runs them using ECS = Container service = that defines what do we have to write into the container definitions in the `Dockerrun.aws.json`
+ - we tell it to download the built prod containers pushed to DockerHub by Travis CI
+   - and to map ports for outside access
+   - and to create links between the nginx container and the rest
+
 
 
