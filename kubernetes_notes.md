@@ -21,4 +21,77 @@
  - `kubectl` = used for managing containers in the node
    - used both for dev and in production
 
+### Docker Compose vs Kubernetes
+ - Docker compose:
+   - builds the containers
+   - 1 config for multiple containers
+   - sets up networking = port mapping etc.
+ - Kubernetes
+   - needs already built containers, e.g. on DockerHub
+   - 1 config file per object
+   - networking has to be set up manually
+   - => config file to set up the networking
+   
+### Kubernetes Configs
+ - configs are for creating `objects` not `containers`
+ - object = a thing that exists in Kubernetes cluster
+ - multiple objects can run on a single Node 
+ - object types:
+   - `Pod`
+     - runs 1 or more docker containers
+     - a grouping of containers with a very similar purpose
+     - = contaners that absolutely have to be ran together = e.g. a DB and a container monitoring the DB
+     - smallest thing to deploy to run a single container
+   - `Service` = setup networking inside the cluster
+     - 4 subtypes: = under key `spec`: `type` in the config
+       - ClusterIP
+       - NodePort = expose a container to the outside worls, only good for dev purposes!
+       - LoadBalancer
+       - Ingress
+   - ...
+ - `apiVersion`: specifies the set of objects that we can use
+   - e.g. `v1` gives us access to objects `Pod` and `Service` and others
+ - `kind` = type of the object = e.g. Pod, Service
+ 
+ 
+#### Pod config
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: client-pod
+  labels:
+    component: web            = this key-value pair can be anything its just a label that can be used by other objects to select this object
+spec:
+  containers:
+    - name: client
+      image: stephengrider/multi-client
+      ports:
+        - containerPort: 3000
+```
+#### Service config
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-node-port
+spec:
+  type: NodePort             = sub-type of Service object
+  ports:
+    - port: 3050             = port that other object can use to acccess the target Pod
+      targetPort: 3000       = same as the containerPort of the target Pod
+      nodePort: 31515        = port that we type into browser to access the target Pod, thats why this is useful mainly for dev work
+  selector:
+    component: web           = looks for all object = target objects (e.g. Pods) with this key-value pair and applies this port mapping to it
+```
 
+#### Networking on a Node
+ - `kubeproxy` = at the beginning at each Node
+   - look for Services = networking objects
+ - each Node has an IP address - we need that to access the Node = it's not on localhost!
+ - get the IP by `minikube ip`
+ 
+#### kubectl commands
+ - `kubectl apply -f <config>`
+ - `kubectl get <object type>` = e.g. pods, services
+   
