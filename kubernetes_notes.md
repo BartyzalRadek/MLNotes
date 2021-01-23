@@ -94,4 +94,17 @@ spec:
 #### kubectl commands
  - `kubectl apply -f <config>`
  - `kubectl get <object type>` = e.g. pods, services
+ 
+
+#### Master 
+ - kube-apiserver runs on it:
+   - it monitors what object it runs and how many copies of the objects are running
+   - it tells the Nodes what to run
+
+#### Imperative vs Declarative management of the cluster
+ - **imperative** = do exactly these steps
+   - Kubernetes supports this also = but we don't want to use this!
+   - we would have to check the current state ourself
+ - **declarative** = I want the end result look like this
+   - = edit the deployment file and pass it to master, it will find out the current state of the cluster and make the needed changes to reach the desired end state 
    
