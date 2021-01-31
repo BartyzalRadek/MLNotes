@@ -92,9 +92,11 @@ spec:
  - get the IP by `minikube ip`
  
 #### kubectl commands
- - `kubectl apply -f <config>`
- - `kubectl get <object type>` = e.g. pods, services
- 
+ - `kubectl apply -f <config>` = apply config = update or create objects
+ - `kubectl get <object type>` = e.g. pods, services, deployments, type=Kind 
+ - `kubectl describe <object type> <object name>` = get a lot of information about the object
+ - `kubectl delete -f <object config file>` = deletes object with same name+type
+ - `kubectl logs <object identifier>` = write out logs, the ID is the first column of `kubectl get`
 
 #### Master 
  - kube-apiserver runs on it:
@@ -108,3 +110,75 @@ spec:
  - **declarative** = I want the end result look like this
    - = edit the deployment file and pass it to master, it will find out the current state of the cluster and make the needed changes to reach the desired end state 
    
+   
+##### Declarative: How to update objects vs Creating a new one?
+ - Name+Kind is an unique identifier of object in cluster:
+   - if there is some existing object in cluster with the same Name+Kind => kubectl will update this object instead of creating a new object
+
+##### Limitation of updates through changes in config for Pods
+ - we can only update image
+ - we cannot to update port
+ - => to update everything use a different Type = `Deployment`
+ 
+#### Deployment type vs Pod type
+ - Pods
+   - runs a single Pod = set of containers
+   - allows changing only image in config when updating
+   - for dev only
+ - Deployment
+   - runs a set of Pods - uses Pod template for it
+   - monitors state of each pod
+   - we can change any property in config when updating - it will delete and recreate Pods if we change their port
+   - for dev and production
+   
+##### Deployment config
+ - `client-deployment.yaml`:
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-deployment
+spec:
+  replicas: 1                = create N replicas of the specified Pod
+  selector:                  = similar to service in Pod config = How do I find the created Pod after master creates it for me? I will match the key-value "component: web"
+    matchLabels:
+      component: web
+  template:                  = list a template for the Pod we want to create
+    metadata:
+      labels:
+        component: web
+    spec:
+      containers:
+        - name: client
+          image: stephengrider/multi-client
+          ports:
+            - containerPort: 3000
+```
+
+##### Networking: Why use Service object?
+ - `Deployment` type object creates N Pods:
+   - all of them have assigned internal IPs that we cannot access from outside
+   - that IP can be changed at any time - if the Pod is restarted
+ - `Service` object watches over all Pods that matches it's selector and routes traffic to them
+ 
+##### Trigger Deployment to update Pods with newest version of docker image
+ - we updated the Docker image that we use
+ - the image name stays the same
+ - there is no version to specify in the `Deployment` config
+ - if we don't change anything in config => `kubectl apply` will not do anything
+ 
+**How to do this? 3 possibilites:**
+ - deleting the Pods and recreating it
+   - not a rolling update
+   - prone to errors 
+ - tag our image with a version and use that tag in the config:
+   - image: `name/my-image:v3`
+   - we cannot use env variables in config = we have to write that `:v3` to the config
+   - adds steps to deployment process
+ - use imperative command to update our Deployment with a latest version fo our image
+   - we still have to tag our Docker image with version
+   - but we don't have update the config - it will have no version tag
+   - best way - we can automate this
+   - run `kubectl set image <object type>/<object name> <container name>=<new image to use with tag>`
+ 
