@@ -76,7 +76,7 @@ kind: Service
 metadata:
   name: client-node-port
 spec:
-  type: NodePort             = sub-type of Service object
+  type: NodePort             = sub-type of Service object, for dev only, for prod use ClusterIP
   ports:
     - port: 3050             = port that other object can use to acccess the target Pod
       targetPort: 3000       = same as the containerPort of the target Pod
@@ -93,7 +93,8 @@ spec:
  
 #### kubectl commands
  - `kubectl apply -f <config>` = apply config = update or create objects
- - `kubectl get <object type>` = e.g. pods, services, deployments, type=Kind 
+ - `kubectl apply -f <directory>` = apply all configs in the directory
+ - `kubectl get <object type>` = e.g. pods, services, deployments,pvc, pv (= persistent volume) type=Kind 
  - `kubectl describe <object type> <object name>` = get a lot of information about the object
  - `kubectl delete -f <object config file>` = deletes object with same name+type
  - `kubectl logs <object identifier>` = write out logs, the ID is the first column of `kubectl get`
@@ -182,3 +183,145 @@ spec:
    - best way - we can automate this
    - run `kubectl set image <object type>/<object name> <container name>=<new image to use with tag>`
  
+
+### Production deployment
+ - combine configs into a single file = just divide the configurations by `---`:
+
+e.g.
+```
+config for Pod
+---
+config for Service
+```
+
+#### Networking: ClusterIP
+ - `ClusterIP` = exposes set of pods to other object in cluster = not to outside world
+ - `Ingress Service` = connects outside world to the ClusterIPs
+ - `NodePort` = exposes to outside world = for dev only
+
+ClusterIP config:
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    component: web
+  ports:
+    - port: 3000           = how other ports access the pods
+      targetPort: 3000     = the actual port in the pods
+```
+
+#### Persistent Volume Claim
+ - needed for Postgres
+ 
+Volume in DOcker world:
+ - Volume = 
+ - Postgres container writes its data into file system in the container
+   - if the container crashes => file system in container gets deleted
+ - volume on host machine = we map the container file system to a part of file system outside of Docker
+ - if container crashes -> new one will connect back to the same volume
+ - do not increase replicas of postgres container if they are mapped to a single volume = they would write over themselves
+
+Kubernetes world:
+**Volume:**
+ - Volume = specific object that allows a container to store data at the Pod level
+   - this Volume can be accessed by all containers in the same Pod = if some container dies -> new container can access it again
+   - but if the Pod dies - the Volume dies as well
+   - not good for storing data for DB - because we use Deployments that can restart Pods
+
+**Persistent Volume:**
+ - persists outside of a Pod
+ - separate from any Pod
+
+**Persistent Volume Claim:**
+ - not an actual volume
+ - advertisement to what persistent volumes are available inside the cluster
+ - Statically provisioned Persistent Volumes = created ahead of time = can be used immediately
+ - Dynamically provisiones = created when some Pod asks for it
+ - this PVC will be attached to some Pod -> then Kubernets will provide the storage
+ - Acess Modes:
+   - ReadWriteonce = only one Node can access it at the same time
+   - ReadOnlyMany = multiple Nodes can read from this
+   - ReadWriteMany = can be read and written to by many Nodes
+ 
+ - storageclass
+   - `kubectl get storageclass`
+   - default while developing on local = get it on host machine
+   - or cloud providers = AWS, GCP, ...
+ 
+ - `kubectl get pvc` = get claims
+ - `kubectl get pv`  = get actual allocated persistent volumes
+ - has own config specifying available Persistent Volumes:
+ 
+```
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: database-persistent-volume-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi       = 2 GB
+```
+
+Postgres Deployment config with the PVC:
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: postgres
+  template:
+    metadata:
+      labels:
+        component: postgres
+    spec:
+      volumes:
+        - name: postgres-storage     = this allocates the volume specified in the PVC config
+          persistentVolumeClaim:
+            claimName: database-persistent-volume-claim
+      containers:
+        - name: postgres
+          image: postgres
+          ports:
+            - containerPort: 5432
+          volumeMounts:               = this mounts the volume to the containers
+            - name: postgres-storage
+              mountPath: /var/lib/postgresql/data = folder in the container
+              subPath: postgres       = folder in the PVC
+```
+
+### Passing environment variables to the containers
+ - HostName of redis = `redis-cluster-ip-service` = Name of the ClusterIP object of Redis deployment
+ - static env values = easy = just put it to `env` section
+ - all env variable values MUST be provided as string! = even e.g. postgres port = '5432'
+ 
+**Passing secrets = e.g. PGPASSWORD**
+ - type of object `Secrets` = like Service, Deployment
+   - securely store information available to other objects
+   - do not use config to create the Secret object => manually use imperative command 
+   - `kubectl create secret generic <secret_name> --from-literal <key>=<value>`
+     - secret_name = refer to it later in a pod config
+     - --from-literal = in this command not in a file
+   - `kubectl create secret generic pgpassword --from-literal PGPASSWORD=admin`
+   - `kubectl get secrets`
+   
+ - use the Secret in the Deployment config:
+   - set it up in the Postgres container as well in the container connecting to the Postgres 
+```
+
+- name: PGPASSWORD  = env var name in the container
+  valueFrom:
+    secretKeyRef:
+      name: pgpassword = name of Secret object
+      key: PGPASSWORD  = key-value pair inside the Secret object
+```
