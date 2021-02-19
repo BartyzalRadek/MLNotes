@@ -325,3 +325,56 @@ spec:
       name: pgpassword = name of Secret object
       key: PGPASSWORD  = key-value pair inside the Secret object
 ```
+
+### Networking: Getting traffic into cluster from outside
+ - Load Balancer Service = legacy way of getting some amount of traffic into a cluster
+   - creates and configures Load Balancer on your cloud provider = e.g. LB on AWS
+   
+ - Ingress = new way of getting traffic into cluster from outside world
+   - 
+   
+#### Ingress
+ - multiple implementations - e.g. NGINX Ingress
+   - use `ingress-nginx` = led by Kubernetes community
+   - do not use `kubernetes-ingress` = led by company nginx
+   - they have diff. documentaions!
+   
+ - setup is based on environment = local or AWS, GC
+ 
+ - write config describing routing rules to get traffic to services inside cluster => Ingress Controller inside kubectl constantly monitors the desired routes and sets up NGINX Pod that routes the traffic to services inside our cluster
+   - in case of `ingress-nginx` Ingress Controller and Pod with NGINX is the same thing
+   
+**Setup on Google Cloud**
+ - Google Cloud Load Balancer will be created for us to send traffic into our cluster
+ - this traffic is sent to Kubernetes Load Balancer service inside the cluster 
+ - This LB inside the cluster sends the traffic to nginx-controller Pod that routes the traffic to correct services inside the cluster
+ - the NGINX Pod routes the traffic directly to our Deployment objects inside the cluster skipping the ClusterIP networking service attached to these Pods
+
+**Ingress Configuration**
+  - docs -> general -> mandatory command = command that must be run in our cluster = sets up necessary objects before we run the setup specific for AWS/GC/etc
+
+```
+    apiVersion: networking.k8s.io/v1beta1
+    # UPDATE THE API
+    kind: Ingress
+    metadata:
+      name: ingress-service
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        nginx.ingress.kubernetes.io/use-regex: 'true'
+        nginx.ingress.kubernetes.io/rewrite-target: /$1   = if /api/adf comes -> remove the /api and pass the rest of the URL to the Deployment
+    spec:
+      rules:
+        - http:
+            paths:
+              - path: /?(.*)
+                backend:
+                  serviceName: client-cluster-ip-service
+                  servicePort: 3000
+              - path: /api/?(.*)
+                backend:
+                  serviceName: server-cluster-ip-service
+                  servicePort: 5000
+```
+  
+ 
