@@ -194,6 +194,7 @@ seq2seq learning:
  - all words are predicted = gradient flows through all "vertical paths" = token embeddings
    
 ### BERT = Bidirectional Encoder Representations from Transformers 
+ - different BERT versions simply explained as git diffs: https://amitness.com/2020/05/git-log-of-bert/
  - Pre-trained models + src = https://github.com/google-research/bert  
  - [BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/abs/1810.04805) 
  - transformer encoder = they call it bi-directional, it's all-directional = attention
