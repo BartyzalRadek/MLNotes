@@ -177,8 +177,10 @@ spec:
    - image: `name/my-image:v3`
    - we cannot use env variables in config = we have to write that `:v3` to the config
    - adds steps to deployment process
- - use imperative command to update our Deployment with a latest version fo our image
+ - use imperative command to update our Deployment with a latest version of our image
    - we still have to tag our Docker image with version
+   - use `$GIT_SHA` as a tag = hash of the current commit = `git rev-parse HEAD`
+   - we can then easily check which commit is running on the Pod`
    - but we don't have update the config - it will have no version tag
    - best way - we can automate this
    - run `kubectl set image <object type>/<object name> <container name>=<new image to use with tag>`
@@ -377,4 +379,15 @@ spec:
                   servicePort: 5000
 ```
   
- 
+#### Helm
+ - = tool that streamlines installing and managing Kubernetes applications = like e.g. Ingress
+ - consists of 2 parts:
+   - Helm CLI = Helm
+   - server = runs on a Pod in our Kubernetes cluster
+ - install it
+ - we have to give it permissions to change our Kubernetes cluster
+   - on Google Cloud = RBAC = Role Based Access Control
+
+#### Accounts vs Roles
+ - `account` = identifies whether you are a user or a service = User account, Service account
+ - `role bindings` = give permissions to do something a kubernetes namespace = set of things in cluster
