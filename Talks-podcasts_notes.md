@@ -1,5 +1,4 @@
-## MIT AGI talks by Lex Fridman
-https://agi.mit.edu/
+## Talks, Podcasts, Interview notes
 
 
 ### Brains, Minds, and Machines (Tomaso Poggio)
