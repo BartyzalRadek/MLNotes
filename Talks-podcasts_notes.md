@@ -349,20 +349,20 @@ https://www.youtube.com/watch?v=8A-5gIW0-eI
 
 https://www.youtube.com/watch?v=xHPQ_oSsJgg
 
- - How to describe the Universe?
-   1. "what's stuff made of"
-     - is everything from atoms, are the atoms the same etc.
-     - => time is not considered, just what is the world made of at this moment
-   2. mathematical description of reality = 16th century+
-     - time is a parameter
-     - we set time to a specific number and we get the state of the universe at that time
-   3. How to describe complex systems?
-     - solving differential equation to get a snowflake shape does not work (scale?)
-     - if there are rules how the world works, how to make these rules as simple as possible? (so we can write them down and use them)
-     - => set of rules = program (we talk about rules as programs because that's what we are familiar with)
-     - => describe the world by a program = set of rules
-     - time is not a parameter anymore, to advance in time, you have to run the program step by step (from given conditions, the intial state)
-     - so what programs are there in the computational space of all programs? (his famous cellular automata diagram)
-       - a lot of them have simple rules => simple output
-       - but some programs with simple rules have a very complex output: https://www.wolframalpha.com/input/?i=cellular+automaton+rule+30
-       - TODO finish
+How to describe the Universe? (different ways of thinking about the world)
+ - "what's stuff made of"
+   - is everything from atoms, are the atoms the same etc.
+   - => time is not considered, just what is the world made of at this moment
+ - mathematical description of reality = 16th century+
+   - time = parameter in equation
+   - we set time to a specific number and we get the state of the universe at that time
+ - How to describe complex systems? (by a program)
+   - solving differential equation to get a snowflake shape does not work (scale?)
+   - if there are rules how the world works, how to make these rules as simple as possible? (so we can write them down and use them)
+   - => set of rules = program (we talk about rules as programs because that's what we are familiar with)
+   - => describe the world by a program = set of rules
+   - time is not a parameter anymore, to advance in time, you have to run the program step by step (from given conditions, the intial state)
+   - so what programs are there in the computational space of all programs? (his famous cellular automata diagram)
+     - a lot of them have simple rules => simple output
+     - but some programs with simple rules have a very complex output: https://www.wolframalpha.com/input/?i=cellular+automaton+rule+30
+     - TODO finish
