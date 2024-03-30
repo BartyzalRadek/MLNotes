@@ -43,7 +43,7 @@ Recent dataset reports
 
 
 
-#### Pretraining
+### Pretraining
  - maximum coverage, diversity, robustness
  - 1T tokens, ideally 10T tokens
  - show the model what we want it to know = e.g. Physics knowledge
@@ -107,9 +107,9 @@ Evaluate Data Quality:
  - ALL of these steps can be done in:
    - https://github.com/huggingface/datatrove
 
-#### Modeling
+### Modeling
 
-size/efficiency
+**size/efficiency**
  - 4D Parallelism:
    - Data Parallelism
      - duplicate model on N GPUs, split the batch and then merge the gradient updates = all-reduce, can be bottleneck
@@ -117,10 +117,86 @@ size/efficiency
      - when you are limited in data parall. = cannot replicate model on GPUs
      - re-write model code to divide all matrix multiplications to 8x parts of the matrices and put them on separate GPUs
    - Pipeline Parallelism
+     - some layers on 1 GPU and other layers on other GPU
+     - challenge is to keep GPUs busy - don't want 2nd GPU wait for the result of first layers calulcated by first GPU
+     - rewrite the optimization code as well = backward goes through multiple GPUs
    - Sequence Parallelism
+     - split along sequence axis
+     - only during training with long sequences
+
+**Synchronization is a problem when paralleizing**
+ - overlap computation and communication
+ - async computation combined with communication in between
+ - fuse kernels, to prevent CPU - GPU communication
+
+**Flash Attention**
+ - never materialize the attention matrix
+ - on the fly build smaller matrices and keep statistics that you need
+ - these small parts of the whole att. matrix fit into SRAM of GPU
+   - SRAM = not shared and next to each core, 20MB
+   - HBM = shared overall GPU memory
+
+**Flash Attention v2**
+ - 2x faster
+ - as much as possible computation in matmul ops
+ - better parallelism, causal masks, better partitioning ...
+
+**Hyper param tuning**
+ - zero-shot hyperparam transfer - MiniCPM
+   - linear learning rate with decay possible 
+ - cosine learning rate very good default
+   - BUT you have to know from beginning how long you are going to train
+
+#### Architectures
+ - nanotron library
+
+Mixture of experts
+ - router selects which tokens go to which expert (expert = MLP)
+ - CPU and GPU not good for dynamic archs
+ - => new idea = efficient training with GPUs with blocks = MegaBlocks
+   - you can have experts of different sizes
+
+Mamba
+ - like convnet but in inference acts like RNN
+ - annotated-mamba
+ - 
+
+## Alignment
+ - align model outputs with human preferences
+ - e.g. behave like dialog model, reduce toxic behavior, etc.
+
+RLHF
+ - reward is complex
+   - people label rewards and you train Reward model
+ - in practice very complicated
+
+DPO = version of RLHF
+ - use the LLM as a reward model = don't have to train a new one
+ - more stable training
+
+REINFORCE = maybe also possible and RL will come back
+ 
+
+## Inference
+
+Quantization:
+ - Full quantization for inference: GPTQ/GGML/NF4
+   - https://arxiv.org/abs/2210.17323
+ - [Comparison of all three techniques](https://towardsdatascience.com/quantize-llama-models-with-ggml-and-llama-cpp-3612dfbcc172)
+ - [AutoGPTQ](https://github.com/AutoGPTQ/AutoGPTQ)
+ - [llama.cpp](https://github.com/ggerganov/llama.cpp)
+   - good default
 
 
-#### instruction-tuning
- - alignment
- - in-context learning
- - task-specific fine-tuning
+Speculative Decoding
+ - Use a small and large model in parallel
+ - two models that are similar
+ - small one generate sentence, the big one validates the tokens so we keep the good ones
+ - take a bit more memory but speeds up inference a lot
+ - Medusa: https://arxiv.org/abs/2401.10774
+
+
+Compiling and CUDA graphs
+ - [Accelerating Generative AI with PyTorch II: GPT, Fast](https://pytorch.org/blog/accelerating-generative-ai-2/)
+ - merge as many ops as possible
+
