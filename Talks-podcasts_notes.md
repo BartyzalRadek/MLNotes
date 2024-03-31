@@ -1,5 +1,28 @@
 ## Talks, Podcasts, Interview notes
 
+### Yann Lecun: Meta AI, Open Source, Limits of LLMs, AGI & the Future of AI (03-2024)
+https://www.youtube.com/watch?v=5t1vTLU7s40
+
+ - real world is complex
+ - all the details cannot be described in langugage
+ - we need images, video
+
+**Problem with images, video**
+ - how to make a good representation of images from unsupervised learning?
+ - problem with images is that the way we train LLMs does not work for them
+   - we train LLMs by reconstruction = reconstruct missing parts of input = missing words
+   - this does not work well for images, video - because there are too many details we cannot reconstruct and that leads to lower quality embeddings
+   - you can't predict how leaves are going to sway in the wind, what is unseen etc.
+
+**Possible Solution = JEPA**
+ - joint embeddings architecture
+ - take 2 images, one orig one corrupted
+ - run them through same encoder => get 2 representations = embeddings
+ - predict the representation of the orig image from the representation of the corrupted one
+ - this moves the "reconstruction" into the latent space
+ - => the predictions are on a higher abstraction level
+ - => the details of the world are removed by the encoder and we are able to predict what is going on in this representation space
+
 
 ### Brains, Minds, and Machines (Tomaso Poggio)
 https://www.youtube.com/watch?v=aSyZvBrPAyk
